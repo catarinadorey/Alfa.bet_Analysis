@@ -1,471 +1,131 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análise Alfa.bet | Março - Outubro</title>
+    <title>Análise Google Ads - Alfa.bet | Clever Advertising</title>
     
+    <!-- Carregar Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonte Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&family=Figtree:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Configuração de Cores (Simulando cores da marca) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-dark': '#1a202c', // Um azul-escuro/carvão
+                        'brand-card': '#2d3748', // Um pouco mais claro para cartões
+                        'brand-accent': '#FACC15', // Um dourado/amarelo para destaque
+                        'brand-text': '#E2E8F0', // Texto claro
+                        'brand-text-soft': '#A0AEC0', // Texto mais suave
+                    },
+                },
+            },
+        }
+    </script>
     
+    <!-- Estilos personalizados para a tabela em modo escuro -->
     <style>
-        /* ------------------------- */
-        /* --- BRANDING & GLOBAIS -- */
-        /* ------------------------- */
-        :root {
-            --color-text: #24282A;
-            --color-header: #231372;
-            --color-highlight: #20E2C8;
-            --color-purple: #6106AF;
-            
-            --font-body: 'Figtree', sans-serif;
-            --font-header: 'Barlow', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: var(--font-body);
-            color: var(--color-text);
-            background-color: #f9fbfc;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
         }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-header);
-            color: var(--color-header);
-            text-transform: uppercase;
-            margin-bottom: 0.75em;
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 1.8rem; }
-        h3 { font-size: 1.25rem; }
-
-        /* Efeito de highlighter pedido */
-        h2 span {
-            background-color: var(--color-highlight);
-            padding: 0.1em 0.3em;
-            line-height: 1.5;
-        }
-
-        p {
-            margin-bottom: 1em;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 2em auto;
-            padding: 0 1.5em;
-        }
-
-        /* ------------------------- */
-        /* --- HEADER COM LOGO ----- */
-        /* ------------------------- */
-        .site-header {
-            background-color: #ffffff;
-            padding: 1.5em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .site-header svg {
-            height: 70px; /* Altura de 70px pedida */
-            width: auto;
-        }
-
-        /* ------------------------- */
-        /* --- LAYOUT & CARDS ------ */
-        /* ------------------------- */
-        .card {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(35, 19, 114, 0.07);
-            padding: 1.5em;
-            overflow: hidden;
-        }
-        
-        .grid-container {
-            display: grid;
-            gap: 1.5em;
-        }
-
-        /* ------------------------- */
-        /* --- 1. KPI CARDS -------- */
-        /* ------------------------- */
-        .kpi-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        .kpi-card {
-            text-align: center;
-        }
-
-        .kpi-card h3 {
-            font-size: 1rem;
-            color: var(--color-purple);
-        }
-
-        .kpi-card .kpi-value {
-            font-size: 2.75rem;
-            font-weight: 700;
-            color: var(--color-header);
-            margin: 0.2em 0;
-        }
-
-        .kpi-card .kpi-note {
-            font-size: 0.9rem;
-            color: #667;
-            font-style: italic;
-        }
-
-        /* ------------------------- */
-        /* --- 2. GRÁFICOS --------- */
-        /* ------------------------- */
-        .charts-grid {
-            grid-template-columns: 2fr 1fr; /* Gráfico principal maior */
-        }
-        
-        .chart-card {
-            padding: 2em;
-        }
-
-        /* ------------------------- */
-        /* --- 3. TIMELINE MENSAL -- */
-        /* ------------------------- */
-        .timeline-container {
-            position: relative;
-            padding: 2em 0;
-        }
-
-        /* A linha vertical da timeline */
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: #e9e9e9;
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2em;
-            padding-left: 60px; /* Espaço para o marcador */
-        }
-
-        /* O marcador circular */
-        .timeline-marker {
-            position: absolute;
-            left: 20px;
-            top: 0.3em;
-            height: 20px;
-            width: 20px;
-            background: var(--color-highlight);
-            border: 4px solid var(--color-header);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-item .card h3 {
-            color: var(--color-purple);
-            margin-top: 0.2em;
-        }
-
-        /* ------------------------- */
-        /* --- 4. TABELA COMPLETA -- */
-        /* ------------------------- */
         .table-wrapper {
-            overflow-x: auto; /* Para mobile */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1em;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 0.8em 1em;
-            text-align: left;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .data-table th {
-            font-family: var(--font-header);
+        thead th {
+            background-color: #2d3748; /* brand-card */
+            color: #E2E8F0; /* brand-text */
+            font-weight: 600;
             text-transform: uppercase;
-            color: var(--color-header);
-            font-size: 0.85rem;
-            background-color: #f9fbfc;
+            letter-spacing: 0.05em;
         }
-        
-        .data-table tbody tr:hover {
-            background-color: #fcfcff;
+        tbody tr:nth-child(odd) {
+            background-color: #1f2735; /* Um pouco diferente do dark */
         }
-
-        .data-table td {
-            font-size: 0.95rem;
+        tbody tr:nth-child(even) {
+            background-color: #242c3d; /* Um pouco diferente do dark */
         }
-        
-        /* Destaques na tabela */
-        .data-table td:nth-child(1), .data-table th:nth-child(1) { font-weight: 700; } /* Mês */
-        .data-table td:nth-child(9), .data-table th:nth-child(9) { font-weight: 700; color: var(--color-purple); } /* CPA */
-        .data-table td:nth-child(10), .data-table th:nth-child(10) { font-weight: 700; color: var(--color-header); } /* Conversão */
-
-
-        /* ------------------------- */
-        /* --- 5. CONCLUSÃO & PEDIDOS */
-        /* ------------------------- */
-        .summary-grid {
-            grid-template-columns: 2fr 1fr;
+        tbody tr:hover {
+            background-color: #3e4a5f; /* brand-card mais claro */
         }
-
-        .requests-card ul {
-            list-style: none;
-            padding-left: 0;
+        td, th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #3e4a5f;
         }
-
-        .requests-card li {
-            position: relative;
-            padding: 0.6em 0 0.6em 2em;
-            border-bottom: 1px dashed #eee;
+        th:first-child, td:first-child {
+            border-left: 4px solid transparent;
         }
-
-        .requests-card li:last-child {
-            border-bottom: none;
+        tbody th {
+            font-weight: 600;
+            color: #E2E8F0; /* brand-text */
         }
-
-        /* Emoji como marcador */
-        .requests-card li::before {
-            content: '⏳';
-            position: absolute;
-            left: 0;
-            top: 0.6em;
-            font-size: 1.1em;
+        tbody tr:hover th:first-child {
+            border-left: 4px solid #FACC15; /* brand-accent */
         }
-
-        /* ------------------------- */
-        /* --- RESPONSIVIDADE ------ */
-        /* ------------------------- */
-        @media (max-width: 900px) {
-            .charts-grid,
-            .summary-grid {
-                grid-template-columns: 1fr; /* Coluna única */
-            }
+        /* Alinhamento de dados numéricos */
+        .data-table td:not(:first-child), 
+        .data-table th:not(:first-child) {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
         }
-        
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-
-            .timeline-container::before { left: 10px; }
-            .timeline-marker { left: 10px; height: 16px; width: 16px; border-width: 3px; }
-            .timeline-item { padding-left: 40px; }
+        .data-table th:first-child,
+        .data-table td:first-child {
+            text-align: left;
         }
-
     </style>
 </head>
-<body>
+<body class="bg-brand-dark text-brand-text leading-relaxed">
 
-    <header class="site-header">
-        <svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 837.7 245.66">
-          <defs>
-            <style>
-              .cls-1 { fill: none; }
-              .cls-2 { clip-path: url(#clippath-1); }
-              .cls-3 { fill: url(#Gradiente_sem_nome_10); }
-              .cls-4 { fill: #24282a; }
-              .cls-5 { clip-path: url(#clippath); }
-            </style>
-            <clipPath id="clippath">
-              <rect class="cls-1" x="546.28" y="39.03" width="110.43" height="113"/>
-            </clipPath>
-            <clipPath id="clippath-1">
-              <rect class="cls-1" width="240.06" height="245.66"/>
-            </clipPath>
-            <linearGradient id="Gradiente_sem_nome_10" data-name="Gradiente sem nome 10" x1="5622.93" y1="5321.6" x2="5624.11" y2="5322.12" gradientTransform="translate(-1349792.92 1307463.94) scale(240.05 -245.66)" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#1b1f59"/>
-              <stop offset="1" stop-color="#0fc"/>
-            </linearGradient>
-          </defs>
-          <g id="Camada_1" data-name="Camada 1">
-            <g id="Grupo_149" data-name="Grupo 149">
-              <g id="Grupo_42-2" data-name="Grupo 42-2">
-                <path id="Caminho_389-2" data-name="Caminho 389-2" class="cls-4" d="M452.05,129.69v18.74c0,1.99-1.61,3.6-3.6,3.6h-67.98c-1.99,0-3.6-1.61-3.6-3.6h0V42.63c0-1.99,1.61-3.6,3.6-3.6h20.9c1.99,0,3.6,1.61,3.6,3.6h0v83.46h43.47c1.99,0,3.6,1.61,3.61,3.59h0Z"/>
-                <path id="Caminho_392-2" data-name="Caminho 392-2" class="cls-4" d="M821.22,116.37l-2.89-5.46c17.91-12.4,22.38-36.97,9.99-54.88-7.37-10.65-19.49-17-32.44-17h-41.65c-1.99,0-3.6,1.61-3.6,3.6v105.8c0,1.99,1.61,3.6,3.6,3.6h20.81c2.04,0,3.7-1.66,3.7-3.7v-30.56c0-.77.63-1.4,1.4-1.4h8.8c.52,0,1,.29,1.24.75l.23.43,17.21,32.51c.64,1.22,1.91,1.98,3.29,1.98h23.18c2,0,3.62-1.63,3.62-3.63,0-.59-.15-1.17-.42-1.69l-16.06-30.34ZM805.1,85.93c-2.59,4.22-7.18,6.79-12.13,6.78h-14.24v-28.46h14.9v.02c7.86.37,13.93,7.03,13.56,14.89-.11,2.4-.83,4.73-2.09,6.78h0Z"/>
-                <path id="Caminho_390-2" data-name="Caminho 390-2" class="cls-4" d="M370.4,140.66c.53.99.24,2.22-.67,2.87-26.46,18.91-63.23,12.79-82.14-13.66-18.91-26.46-12.79-63.23,13.66-82.14,20.48-14.64,47.99-14.64,68.47,0,.91.66,1.19,1.88.67,2.88l-10.45,19.73c-.93,1.76-3.11,2.42-4.87,1.49-.2-.1-.38-.23-.55-.36-13.36-10.51-32.71-8.21-43.22,5.15-10.51,13.36-8.21,32.71,5.15,43.22,11.17,8.79,26.91,8.79,38.08,0,1.55-1.24,3.82-.99,5.06.57.14.17.26.36.37.56l10.44,19.73Z"/>
-                <path id="Caminho_388-2" data-name="Caminho 388-2" class="cls-4" d="M487.03,64.97v18.73h37.96c1.99,0,3.6,1.61,3.6,3.6v16.46c0,1.99-1.61,3.6-3.6,3.6h-37.96v18.73h49.15c1.99,0,3.6,1.61,3.6,3.6v18.74c0,1.99-1.61,3.6-3.6,3.6h-73.66c-1.99,0-3.6-1.61-3.6-3.6V42.63c0-1.99,1.61-3.6,3.6-3.6h73.66c1.99,0,3.6,1.61,3.6,3.6v18.65c0,2.04-1.65,3.69-3.69,3.69h-49.06Z"/>
-                <path id="Caminho_391-2" data-name="Caminho 391-2" class="cls-4" d="M691.37,64.97v18.73h37.96c1.99,0,3.6,1.61,3.6,3.6v16.46c0,1.99-1.61,3.6-3.6,3.6h-37.96v18.73h49.15c1.99,0,3.6,1.61,3.6,3.6v18.74c0,1.99-1.61,3.6-3.6,3.6h-73.66c-1.99,0-3.6-1.61-3.6-3.6V42.63c0-1.99,1.61-3.6,3.6-3.6h73.66c1.99,0,3.6,1.61,3.6,3.6v18.65c0,2.04-1.65,3.69-3.69,3.69h-49.06Z"/>
-                <g id="Grupo_29-2" data-name="Grupo 29-2">
-                  <g class="cls-5">
-                    <g id="Grupo_4-3" data-name="Grupo 4-3">
-                      <path id="Caminho_204-3" data-name="Caminho 204-3" class="cls-4" d="M656.55,42.1l-42.22,107.61c-.55,1.4-1.9,2.32-3.41,2.32h-18.86c-1.51,0-2.86-.92-3.41-2.32l-42.22-107.61c-.45-1.15.11-2.46,1.27-2.91.26-.1.54-.16.82-.16h24.31c1.54,0,2.92.96,3.45,2.41l25.21,69.57,15.99-44.09c.27-.74-.12-1.55-.85-1.82-.15-.06-.32-.08-.48-.08h-15.82c-1.24,0-2.25-1-2.25-2.25,0-.26.05-.52.13-.77l7.45-20.56c.53-1.45,1.9-2.41,3.44-2.41h45.35c1.24,0,2.25,1.01,2.25,2.25,0,.28-.05.56-.16.82"/>
-                    </g>
-                  </g>
-                </g>
-              </g>
-              <g id="Grupo_43-2" data-name="Grupo 43-2">
-                <path id="Caminho_393-2" data-name="Caminho 393-2" class="cls-4" d="M310.46,207.36c0,.24-.09.46-.27.62-.22.17-.5.26-.77.24h-6.76c-.33,0-.66-.11-.92-.32-.28-.21-.49-.5-.61-.82l-1.57-4.57h-12.07l-1.55,4.55c-.09.33-.29.62-.57.82-.28.21-.62.33-.98.32h-6.74c-.28.02-.55-.06-.77-.23-.18-.16-.29-.39-.27-.63,0-.19.05-.37.12-.55l12.72-32.27c.14-.34.38-.64.68-.86.27-.2.6-.31.94-.31h5.02c.34,0,.67.12.94.32.29.21.51.51.63.85l12.69,32.29c.07.17.11.36.12.55M297.1,195.31l-3.6-10.55-3.6,10.55h7.2Z"/>
-                <path id="Caminho_394-2" data-name="Caminho 394-2" class="cls-4" d="M338.14,174.64c0-.34.13-.66.37-.89.23-.24.56-.38.89-.37h10.81c3.16-.05,6.28.71,9.06,2.23,2.61,1.44,4.77,3.58,6.23,6.19,1.52,2.76,2.29,5.86,2.24,9.01.05,3.14-.72,6.23-2.24,8.98-1.46,2.6-3.61,4.74-6.23,6.17-2.78,1.51-5.9,2.27-9.06,2.21h-10.81c-.7,0-1.26-.56-1.26-1.26h0v-32.27ZM350.21,199.97c3.23.04,6.21-1.71,7.74-4.55.77-1.42,1.16-3.01,1.14-4.62.02-1.66-.37-3.3-1.14-4.76-1.5-2.87-4.5-4.65-7.74-4.59l-3.43.02v18.5h3.43Z"/>
-                <path id="Caminho_395-2" data-name="Caminho 395-2" class="cls-4" d="M425.13,173.56c.18.15.28.38.26.62,0,.2-.04.39-.12.57l-12.72,32.27c-.13.35-.36.65-.65.87-.27.21-.6.32-.94.32h-5.02c-.35,0-.68-.12-.95-.33-.29-.21-.52-.5-.64-.83l-12.67-32.29c-.07-.17-.11-.36-.12-.55,0-.23.09-.46.26-.61.22-.16.49-.25.76-.23h6.76c.34,0,.67.11.94.32.28.21.48.51.58.85l7.55,21,7.67-21.05c.1-.34.31-.63.6-.83.27-.2.59-.31.93-.31h6.76c.27-.02.54.06.76.21"/>
-                <path id="Caminho_396-2" data-name="Caminho 396-2" class="cls-4" d="M452.9,174.64c-.02-.34.1-.68.33-.93.25-.23.59-.35.93-.33h22.4c.34-.02.68.1.93.33.23.25.35.59.33.93v5.48c.02.34-.1.67-.32.93-.25.24-.59.36-.94.33h-15.12v5.76h11.48c.37-.02.73.1,1.01.35.26.25.39.61.37.97v4.53c.02.35-.12.69-.37.93-.28.24-.64.36-1.01.33h-11.48v5.93h15.12c.47-.03.92.13,1.27.44.32.31.49.74.46,1.18v5.14c.02.34-.11.66-.35.9-.26.23-.6.35-.94.33h-22.85c-.34.02-.67-.09-.93-.32-.23-.25-.36-.58-.33-.92v-32.29Z"/>
-                <path id="Caminho_397-2" data-name="Caminho 397-2" class="cls-4" d="M534.29,207.26c0,.51-.4.92-.9.93-.02,0-.03,0-.05,0h-7.12c-.29.02-.58-.06-.82-.23-.27-.24-.48-.52-.63-.85l-5.1-9.81h-3.55v9.62c.02.34-.11.68-.35.93-.26.23-.61.35-.96.33h-6.1c-.34.02-.67-.1-.92-.33-.23-.25-.34-.59-.32-.93v-32.29c-.01-.34.11-.66.35-.9.23-.24.56-.37.89-.36h12.22c2.26-.04,4.49.47,6.5,1.49,1.85.95,3.38,2.42,4.42,4.23,1.09,1.94,1.64,4.14,1.59,6.36.03,2.04-.46,4.06-1.42,5.86-.92,1.71-2.29,3.13-3.96,4.12l6.1,11.31c.1.16.14.34.14.52M516.12,189.85h4.45c.77.01,1.52-.2,2.18-.6.64-.39,1.16-.95,1.51-1.62.37-.69.56-1.46.55-2.24.01-.76-.18-1.51-.55-2.18-.35-.63-.88-1.15-1.51-1.5-.67-.36-1.42-.55-2.18-.53h-4.45v8.67Z"/>
-                <path id="Caminho_398-2" data-name="Caminho 398-2" class="cls-4" d="M561.13,174.64c-.02-.34.1-.68.33-.93.25-.23.59-.35.93-.33h23.24c.34-.02.68.1.93.33.23.25.35.59.33.93v5.74c.02.35-.1.68-.33.94-.25.24-.58.37-.93.35h-7.31v25.55c.02.35-.1.69-.33.94-.26.23-.6.35-.95.32h-6.1c-.64.06-1.2-.4-1.26-1.04,0-.07,0-.15,0-.22v-25.55h-7.29c-.34.02-.68-.1-.93-.35-.23-.26-.35-.6-.33-.94v-5.74Z"/>
-                <path id="Caminho_399-2" data-name="Caminho 399-2" class="cls-4" d="M623.9,207.24c.07.44-.23.86-.68.93-.07.01-.15.01-.22,0h-6.79c-.46.06-.87-.27-.93-.73,0-.07,0-.14,0-.2v-32.94c-.06-.44.26-.85.7-.9.07,0,.15,0,.22,0h6.79c.44-.06.84.25.9.69,0,.07,0,.14,0,.21v32.94Z"/>
-                <path id="Caminho_400-2" data-name="Caminho 400-2" class="cls-4" d="M652.91,204.31c.01-.3.1-.6.26-.86l2.81-5.05c.2-.41.62-.67,1.07-.67.27.01.54.08.79.19,1.47.68,2.99,1.24,4.55,1.68,1.51.41,3.06.61,4.62.61,1.06.03,2.12-.21,3.06-.7.75-.34,1.24-1.07,1.25-1.89,0-.58-.25-1.13-.7-1.5-.6-.49-1.27-.86-2-1.12-.87-.33-2.09-.73-3.66-1.19-2.07-.58-4.08-1.36-6-2.34-1.43-.74-2.65-1.83-3.54-3.18-.87-1.47-1.29-3.15-1.22-4.86-.05-2.05.57-4.07,1.76-5.74,1.2-1.62,2.82-2.88,4.69-3.63,2.01-.83,4.17-1.25,6.35-1.23,1.47,0,2.94.17,4.37.5,1.37.3,2.71.73,4.01,1.26,1.03.42,2.02.93,2.95,1.52.41.21.68.62.71,1.07-.03.32-.13.63-.31.9l-2.83,5.14c-.17.38-.56.62-.98.62-.37-.02-.73-.13-1.05-.31-1.18-.62-2.41-1.14-3.68-1.56-1.23-.37-2.51-.55-3.8-.54-.91-.02-1.81.2-2.6.64-.64.29-1.07.92-1.1,1.62,0,.7.47,1.3,1.41,1.8,1.45.69,2.97,1.25,4.53,1.65,2.14.6,4.22,1.37,6.24,2.3,1.52.71,2.84,1.79,3.83,3.14,1.03,1.52,1.53,3.33,1.45,5.16.04,2.1-.58,4.15-1.79,5.87-1.23,1.71-2.91,3.04-4.86,3.85-2.15.91-4.46,1.36-6.79,1.33-2.35,0-4.68-.31-6.95-.9-2.2-.56-4.31-1.43-6.26-2.6-.38-.19-.61-.58-.62-1"/>
-                <path id="Caminho_401-2" data-name="Caminho 401-2" class="cls-4" d="M717.37,207.24c.07.44-.23.86-.68.93-.08.01-.15.01-.23,0h-6.79c-.46.06-.87-.27-.93-.73,0-.07,0-.14,0-.2v-32.94c-.06-.44.26-.85.7-.9.07,0,.15,0,.22,0h6.79c.44-.06.84.24.9.68.01.07.01.15,0,.22v32.94Z"/>
-                <path id="Caminho_402-2" data-name="Caminho 402-2" class="cls-4" d="M778.6,173.61c.17.19.26.44.24.69v32.96c.02.26-.07.51-.25.69-.19.17-.43.25-.68.24h-6.48c-.75,0-1.45-.41-1.81-1.07l-13.38-20.36v20.5c.02.25-.07.51-.25.69-.19.17-.43.25-.68.24h-6.79c-.25.01-.49-.07-.68-.24-.18-.18-.27-.44-.25-.69v-32.95c-.02-.25.07-.51.25-.69.19-.17.43-.25.68-.24h7.03c.75.04,1.42.46,1.79,1.12l12.88,19.15v-19.34c-.02-.25.07-.5.24-.69.18-.17.42-.25.67-.24h6.79c.25-.02.5.07.69.24"/>
-                <path id="Caminho_403-2" data-name="Caminho 403-2" class="cls-4" d="M827.49,200.03c.61-.16,1.2-.37,1.76-.66v-6.14c-.01-.34.12-.67.37-.91.24-.23.56-.36.89-.36h5.98c.32,0,.64.13.86.37.23.24.36.56.36.89v11.36c0,.26-.07.51-.19.74-.1.23-.27.42-.48.55-1.63.97-3.4,1.7-5.25,2.14-1.96.55-3.98.85-6.01.88-3.24.03-6.43-.79-9.24-2.4-2.75-1.56-5.04-3.82-6.63-6.55-1.63-2.77-2.47-5.93-2.44-9.15-.04-6.48,3.42-12.47,9.05-15.67,2.81-1.61,6-2.44,9.24-2.41,1.91.02,3.81.34,5.62.94,1.76.51,3.41,1.35,4.86,2.47.33.23.53.62.52,1.02,0,.24-.07.47-.22.67l-3.5,5.26c-.19.32-.53.51-.91.5-.3,0-.59-.1-.81-.31-.78-.65-1.68-1.13-2.64-1.44-.93-.33-1.92-.5-2.91-.51-1.71-.02-3.39.42-4.88,1.26-1.45.82-2.66,2-3.5,3.44-1.71,2.96-1.71,6.61,0,9.57.84,1.44,2.05,2.62,3.5,3.44,1.49.84,3.17,1.28,4.88,1.26.58-.02,1.16-.11,1.72-.27"/>
-              </g>
-              <g id="Grupo_41-2" data-name="Grupo 41-2">
-                <g class="cls-2">
-                  <g id="Grupo_4-4" data-name="Grupo 4-4">
-                    <path id="Caminho_204-4" data-name="Caminho 204-4" class="cls-3" d="M239.71,6.67l-91.78,233.94c-1.2,3.05-4.14,5.05-7.41,5.05h-41c-3.27,0-6.21-2.01-7.41-5.05L.34,6.67C-.64,4.16.59,1.32,3.1.34,3.67.11,4.28,0,4.89,0h52.84c3.35,0,6.34,2.1,7.48,5.25l54.82,151.23,34.75-95.85c.58-1.6-.25-3.37-1.85-3.95-.34-.12-.69-.19-1.05-.18h-34.39c-2.7,0-4.88-2.19-4.88-4.88,0-.57.1-1.13.29-1.66l16.2-44.7c1.14-3.15,4.13-5.25,7.49-5.25h98.59c2.7,0,4.88,2.19,4.88,4.88,0,.61-.11,1.22-.34,1.78"/>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </g>
-        </svg>
+    <!-- Header -->
+    <header class="bg-brand-card shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Clever -->
+                <div>
+                    <img class="h-10 w-auto" 
+                         src="Logo-Clever.webp" 
+                         alt="Logo Clever Advertising"
+                         onerror="this.src='https://placehold.co/150x40/2d3748/FACC15?text=Clever+Ads'">
+                </div>
+                <!-- Logo Alfa.bet -->
+                <div>
+                    <img class="h-10 w-auto" 
+                         src="log-alfa.jpeg" 
+                         alt="Logo Alfa.bet"
+                         onerror="this.src='https://placehold.co/150x40/2d3748/FACC15?text=Alfa.bet'">
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <main class="container">
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
 
-        <h1>Análise Alfa.bet</h1>
-        <p style="font-size: 1.2em; margin-top: -1em; margin-bottom: 2em;">Relatório de Performance: Março a Outubro</p>
-
-        <section class="kpi-grid grid-container">
-            <div class="card kpi-card">
-                <h3>CPA (Outubro)</h3>
-                <p class="kpi-value">€23.41</p>
-                <p class="kpi-note">Melhoria de 8% vs Setembro</p>
-            </div>
-            <div class="card kpi-card">
-                <h3>Taxa de Conversão (Outubro)</h3>
-                <p class="kpi-value">52.65%</p>
-                <p class="kpi-note">Eficiência mantém-se altíssima</p>
-            </div>
-            <div class="card kpi-card">
-                <h3>CPA "Viragem" (Setembro)</h3>
-                <p class="kpi-value">€25.30</p>
-                <p class="kpi-note">Abaixo do objetivo inicial de €30</p>
-            </div>
-            <div class="card kpi-card">
-                <h3>Novo Objetivo CPA</h3>
-                <p class="kpi-value">€13.00</p>
-                <p class="kpi-note">Meta agressiva para rentabilidade</p>
-            </div>
+        <!-- Título da Página -->
+        <section class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                Análise de Performance <span class="text-brand-accent">Google Ads</span>
+            </h1>
+            <p class="text-2xl font-light text-brand-text-soft">
+                Cliente: Alfa.bet (Março a Outubro)
+            </p>
         </section>
 
-        <section class="charts-section grid-container" style="margin-top: 2.5em;">
-            <div class="card chart-card charts-grid">
-                <div style="grid-column: 1 / -1;"> <h2>Evolução <span>dos Custos</span></h2>
-                </div>
-                <div class="chart-container" style="position: relative; height: 350px; width: 100%; grid-column: 1 / -1;">
-                    <canvas id="cpaCplChart"></canvas>
-                </div>
-            </div>
-            <div class="card chart-card">
-                <h2>Taxa de <span>Conversão</span></h2>
-                <div class="chart-container" style="position: relative; height: 350px; width: 100%;">
-                    <canvas id="conversionChart"></canvas>
-                </div>
-            </div>
-            <div class="card chart-card" style="grid-column: 1 / -1;"> <h2>Investimento <span>vs. FTDs</span></h2>
-                <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
-                    <canvas id="investmentFtdChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section class="timeline-section" style="margin-top: 2.5em;">
-            <h2>Análise <span>Evolutiva</span></h2>
-
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content card">
-                        <h3>Março - Abril: Lançamento e Aprendizagem</h3>
-                        <p>Início a 13 de Março com lista alargada de keywords. Volume rápido, mas <strong>CPA muito elevado (€161.55)</strong>.</p>
-                        <p>Em Abril, pausámos para implementar tracking granular. O CPA de €100.26 foi artificialmente baixo devido a <em>late conversions</em>.</p>
-                        <p><strong>Resultado:</strong> Perdas de 18K€ e 11K€, mas CPL promissor.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content card">
-                        <h3>Maio: A Primeira Grande Otimização</h3>
-                        <p>Retomámos a 13 de Maio com novo tracking. Otimização rigorosa de keywords e anúncios (foco em bónus).</p>
-                        <p><strong>Impacto imediato:</strong> CPA caiu para <strong>€42.81</strong> e a Taxa de Conversão (Signup-FTD) duplicou para <strong>23%</strong>. Perda mensal reduziu para 7.9K€.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content card">
-                        <h3>Junho: Escalabilidade Máxima</h3>
-                        <p>Primeiro mês completo com estrutura otimizada, foco em escalar. Orçamento, Signups e FTDs dispararam (pico do ano).</p>
-                        <p>Contudo, o CPA subiu para <strong>€48.32</strong> (acima do objetivo). O alto investimento gerou a <strong>maior perda do período (-27K€)</strong>, provando que escalar sem rentabilidade era insustentável.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content card">
-                        <h3>Julho - Agosto: Controlo de Custos e Eficiência</h3>
-                        <p>Mudança de estratégia: de escala para controlo. Redução gradual do orçamento para forçar eficiência.</p>
-                        <p>O CPA estabilizou nos <strong>€50-€60</strong>. Foco em clientes de maior valor ajudou a controlar as perdas, mesmo com CPA acima do ideal.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content card">
-                        <h3>Setembro: A Revolução no Registo</h3>
-                        <p>A alteração no processo de registo da Alfa.bet foi um sucesso absoluto. <strong>Este foi o ponto de viragem.</strong></p>
-                        <p>A Taxa de Conversão (Signup-FTD) atingiu uns incríveis <strong>58.16%</strong>.</p>
-                        <p>O CPA consolidou-se em <strong>€25.30</strong> (abaixo do objetivo de €30).</p>
-                        <p><strong>O mais impressionante:</strong> com 37% menos investimento que Agosto, gerámos <strong>+35% de FTDs</strong> (246 vs 182).</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content card">
-                        <h3>Outubro: A Nova Estratégia de Rentabilidade</h3>
-                        <p>Análise financeira mostrou que, mesmo com CPA de €25,30, não atingimos o breakeven.</p>
-                        <p><strong>Redefinição estratégica:</strong> Novo objetivo de CPA muito mais agressivo de <strong>€13</strong>.</p>
-                        <p>Primeira ação: reduzir investimento (de 6.2k€ para 4.4k€), focando em tráfego de alta eficiência. O CPA já desceu para <strong>€23.41</strong>, suportado por um CTR recorde (5.05%) e conversão de 52.65%.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="table-section" style="margin-top: 2.5em;">
-            <h2>Dados <span>Completos (Mar-Out)</span></h2>
-            <div class="card table-wrapper">
-                <table class="data-table">
+        <!-- Tabela de Dados -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-center">Resultados da Campanha (Mês a Mês)</h2>
+            <div class="table-wrapper overflow-x-auto rounded-lg">
+                <table class="w-full min-w-[1200px] data-table">
                     <thead>
                         <tr>
                             <th>Mês</th>
@@ -476,13 +136,13 @@
                             <th>Signups (Leads)</th>
                             <th>Custo por Lead (CPL)</th>
                             <th>FTDs</th>
-                            <th>Custo por Aquisição (CPA)</th>
+                            <th>Custo por Aquisição (CPP/CPA)</th>
                             <th>Taxa Conversão (Signup - FTD)</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-brand-text-soft">
                         <tr>
-                            <td>Março</td>
+                            <th scope="row">Março</th>
                             <td>€18,416.80</td>
                             <td>370,683</td>
                             <td>14,813</td>
@@ -494,7 +154,7 @@
                             <td>6.67%</td>
                         </tr>
                         <tr>
-                            <td>Abril</td>
+                            <th scope="row">Abril</th>
                             <td>€11,630.73</td>
                             <td>174,759</td>
                             <td>11,124</td>
@@ -506,7 +166,7 @@
                             <td>4.72%</td>
                         </tr>
                         <tr>
-                            <td>Maio</td>
+                            <th scope="row">Maio</th>
                             <td>€8,519.99</td>
                             <td>277,430</td>
                             <td>6,333</td>
@@ -518,7 +178,7 @@
                             <td>23.47%</td>
                         </tr>
                         <tr>
-                            <td>Junho</td>
+                            <th scope="row">Junho</th>
                             <td>€29,425.83</td>
                             <td>1,233,510</td>
                             <td>25,883</td>
@@ -530,7 +190,7 @@
                             <td>26.80%</td>
                         </tr>
                         <tr>
-                            <td>Julho</td>
+                            <th scope="row">Julho</th>
                             <td>€21,244.51</td>
                             <td>856,613</td>
                             <td>18,718</td>
@@ -542,7 +202,7 @@
                             <td>19.05%</td>
                         </tr>
                         <tr>
-                            <td>Agosto</td>
+                            <th scope="row">Agosto</th>
                             <td>€9,836.32</td>
                             <td>461,416</td>
                             <td>12,587</td>
@@ -554,7 +214,7 @@
                             <td>20.92%</td>
                         </tr>
                         <tr>
-                            <td>Setembro</td>
+                            <th scope="row">Setembro</th>
                             <td>€6,224.32</td>
                             <td>181,903</td>
                             <td>6,188</td>
@@ -566,7 +226,7 @@
                             <td>58.16%</td>
                         </tr>
                         <tr>
-                            <td>Outubro</td>
+                            <th scope="row">Outubro</th>
                             <td>€4,424.35</td>
                             <td>124,690</td>
                             <td>6,292</td>
@@ -582,165 +242,125 @@
             </div>
         </section>
 
-        <section class="summary-grid grid-container" style="margin-top: 2.5em;">
+        <!-- Análise Cronológica -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-10 text-center">Evolução Estratégica e Análise</h2>
             
-            <div class="card">
-                <h3>Conclusão e Próximos Passos</h3>
-                <p><strong>Conclusão:</strong> Com a performance de Setembro a validar a melhoria do produto (registo), a estratégia mudou de "otimização" para "rentabilidade agressiva". Outubro foi o primeiro passo nessa direção e, embora a meta final de 13€ de CPA seja um desafio, a melhoria de 8% no custo mostra que estamos no caminho certo.</p>
-                <p><strong>Próximos Passos (Novembro):</strong> O plano foca-se em aumentar a qualidade da segmentação. Iremos realizar um novo <em>keyword research</em> focado exclusivamente em termos de alta intenção, continuando a gerir o investimento de forma rigorosa para forçar a descida do CPA em direção à nova meta de 13€.</p>
-            </div>
+            <!-- Usamos um layout de "timeline" vertical -->
+            <div class="relative max-w-3xl mx-auto border-l-2 border-brand-accent/30">
 
-            <div class="card requests-card">
-                <h3>Pedidos (Alfa.bet)</h3>
-                <ul>
-                    <li>Ofertas que serão feitas nos próximos meses (estamos sem ofertas).</li>
-                    <li>Calendário dos próximos jogos.</li>
-                    <li>Importação Offline de FTDs (ainda não foi falado com eles).</li>
-                    <li>Página de promoções atualizada no site (sugestão).</li>
-                    <li>Popup de registo e início de sessão no site (sugestão).</li>
+                <!-- Item: Março - Abril -->
+                <div class="mb-10 ml-8 pl-6 relative">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Março - Abril : Lançamento e Estruturação</h3>
+                    <p class="text-brand-text-soft">
+                        Iniciámos a 13 de março com uma estratégia de lançamento abrangente, utilizando uma lista alargada de keywords para explorar o potencial do mercado. Como esperado, esta abordagem gerou rapidamente volume, mas a um Custo por Aquisição (CPP) inicial muito elevado de 161,55€. No entanto, o Custo por Lead (CPL) mostrou-se promissor desde o início. Financeiramente, esta fase representou um investimento inicial significativo, resultando em perdas de 18K€ e 11K€ respetivamente.
+                    </p>
+                    <p class="text-brand-text-soft mt-3">
+                        Em abril, identificámos a necessidade crítica de uma análise mais granular. Para isso, pausámos as campanhas a meio do mês para implementar trackers a nível de keyword. Esta paragem fez com que o CPP reportado de 100,26€ fosse artificialmente baixo, devido a FTDs que foram atribuídos posteriormente (late conversions).
+                    </p>
+                </div>
+
+                <!-- Item: Maio -->
+                <div class="mb-10 ml-8 pl-6 relative">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Maio : A Primeira Grande Otimização</h3>
+                    <p class="text-brand-text-soft">
+                        Retomámos as campanhas a 13 de maio com a nova estrutura de tracking. Esta visibilidade permitiu-nos iniciar um processo rigoroso de otimização, eliminando keywords de baixa performance e melhorando os anúncios com headlines e descrições focadas em bónus. O impacto foi imediato e decisivo:
+                    </p>
+                    <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
+                        <li>O CPP caiu drasticamente para 42,81€.</li>
+                        <li>A Taxa de Conversão (Signup-FTD) mais do que duplicou, passando de uma média de 6% para 23%.</li>
+                        <li>Como resultado direto, a diferença entre investimento e lucro melhorou significativamente, reduzindo a perda mensal para 7.900€.</li>
+                    </ul>
+                </div>
+
+                <!-- Item: Junho -->
+                <div class="mb-10 ml-8 pl-6 relative">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Junho : Escalabilidade Máxima</h3>
+                    <p class="text-brand-text-soft">
+                        Junho foi o primeiro mês completo com a estrutura otimizada, e a estratégia focou-se em escalar o investimento. O orçamento, os Signups e os FTDs dispararam, atingindo os valores mais altos do ano. No entanto, este crescimento veio com um custo, e o CPP de 48,32€ permaneceu acima do nosso objetivo. Financeiramente, esta foi a fase mais desafiadora: o alto investimento combinado com um CPP ainda elevado gerou a maior perda do período (-27K€), provando que escalar sem rentabilidade era insustentável.
+                    </p>
+                </div>
+
+                <!-- Item: Julho - Agosto -->
+                <div class="mb-10 ml-8 pl-6 relative">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Julho - Agosto : Controlo de Custos e Eficiência</h3>
+                    <p class="text-brand-text-soft">
+                        Com o aprendizado de junho, a estratégia para os dois meses seguintes mudou de escala para controlo. Optámos por uma redução gradual do orçamento para forçar a eficiência e trazer o CPP para dentro do objetivo. Comparado com o pico de junho, o investimento e o volume de tráfego foram reduzidos, e o CPP estabilizou na casa dos 50-60€. O ponto-chave neste período foi o aumento do valor do lucro, indicando um foco em clientes de maior qualidade, o que ajudou a controlar as perdas mesmo com um CPP ainda acima do ideal.
+                    </p>
+                </div>
+
+                <!-- Item: Setembro -->
+                <div class="mb-10 ml-8 pl-6 relative">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Setembro : A Revolução no Processo de Registo</h3>
+                    <p class="text-brand-text-soft">
+                        Os dados do mês completo de setembro confirmaram o ponto de viragem decisivo na conta. A alteração no processo de registo da Alfa.bet provou ser um sucesso absoluto e sustentado:
+                    </p>
+                     <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
+                        <li>A Taxa de Conversão (Signup-FTD) fechou o mês nuns incríveis 58%, o nível de eficiência mais alto de sempre.</li>
+                        <li>O CPP consolidou-se em 25,30€, ficando confortavelmente abaixo do nosso objetivo de 30€.</li>
+                        <li>O mais impressionante: apesar de uma redução de 37% no investimento em relação a agosto (de 9.8K€ para 6.2K€), a eficiência foi tão grande que conseguimos gerar mais 35% de FTDs (246 em Setembro vs. 182 em Agosto).</li>
+                    </ul>
+                </div>
+
+                <!-- Item: Outubro -->
+                <div class="mb-10 ml-8 pl-6 relative">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Outubro : A Nova Estratégia de Rentabilidade</h3>
+                    <p class="text-brand-text-soft">
+                        Após uma análise financeira detalhada dos resultados até o mês de Setembro, reparámos que, mesmo estando dentro do objetivo de CPP (25,30€), a campanha ainda não tinha atingido o ponto de breakeven (investimento vs. retorno). Esta constatação levou a uma redefinição estratégica crucial: o novo objetivo de CPP foi redefinido para um valor muito mais agressivo de 13€ a partir de Outubro.
+                    </p>
+                    <p class="text-brand-text-soft mt-3">
+                        Para perseguir esta nova meta, a primeira ação foi reduzir o investimento (de 6,2k€ para 4,4k€), focando apenas no tráfego com maior potencial de eficiência. Embora o novo e ambicioso objetivo de 13€ ainda não tenha sido alcançado, a estratégia já deu os primeiros resultados positivos:
+                    </p>
+                    <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
+                        <li>O CPP desceu para 23,41€, uma melhoria de 8% em relação a Setembro.</li>
+                        <li>Este progresso foi suportado por métricas de tráfego excecionais: o CTR atingiu um recorde de 5,05% e a taxa de conversão manteve-se nuns impressionantes 52,65%, indicando que a qualidade dos cliques é alta.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Conclusão e Próximos Passos -->
+        <section class="max-w-4xl mx-auto bg-brand-card p-8 rounded-lg shadow-2xl mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-center">Conclusão e Próximos Passos</h2>
+            <div class="space-y-4 text-brand-text-soft text-lg">
+                <p>
+                    Com a performance de Setembro a validar a melhoria do produto, a estratégia mudou de "otimização" para "rentabilidade agressiva". Outubro foi o primeiro passo nessa direção e, embora a meta final de 13€ de CPP seja um desafio, a melhoria de 8% no custo mostra que estamos no caminho certo.
+                </p>
+                <p class="font-semibold text-brand-text">
+                    Para o mês de Novembro, o plano foca-se em aumentar a qualidade da segmentação. Iremos realizar um novo keyword research focado exclusivamente em termos de alta intenção, continuando a gerir o investimento de forma rigorosa para forçar a descida do CPP em direção à nova meta de 13€.
+                </p>
+            </div>
+        </section>
+
+        <!-- Pedidos Pendentes -->
+        <section class="max-w-4xl mx-auto">
+             <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Pedidos Pendentes (Aguardamos Alfa.bet)</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Ofertas que serão feitas nos próximos meses (estamos sem ofertas neste momento)</li>
+                    <li>Calendário dos próximos jogos</li>
+                    <li>Importação Offline de FTDs (ainda não foi falado com eles)</li>
+                    <li>Página de promoções atualizada no site (sugestão minha)</li>
+                    <li>Popup de registo e início de sessão no site (sugestão minha)</li>
                 </ul>
             </div>
         </section>
 
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Dados extraídos do documento
-            const labels = ['Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'];
-            const cpaData = [161.55, 100.26, 42.81, 48.32, 63.80, 54.05, 25.30, 23.41];
-            const cplData = [10.78, 4.73, 10.05, 12.95, 12.15, 11.31, 14.71, 12.32];
-            const conversionData = [6.67, 4.72, 23.47, 26.80, 19.05, 20.92, 58.16, 52.65];
-            const investData = [18416.80, 11630.73, 8519.99, 29425.83, 21244.51, 9836.32, 6224.32, 4424.35];
-            const ftdData = [114, 116, 199, 609, 333, 182, 246, 189];
-            
-            // Cores do Branding
-            const colorHeader = '#231372';
-            const colorHighlight = '#20E2C8';
-            const colorPurple = '#6106AF';
-
-            // 1. Gráfico CPA vs CPL
-            const ctxCpaCpl = document.getElementById('cpaCplChart').getContext('2d');
-            new Chart(ctxCpaCpl, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'CPA (Custo por Aquisição)',
-                            data: cpaData,
-                            borderColor: colorHeader,
-                            backgroundColor: colorHeader + '33', // 33 = 20% opacity
-                            tension: 0.1,
-                            yAxisID: 'yCPA',
-                        },
-                        {
-                            label: 'CPL (Custo por Lead)',
-                            data: cplData,
-                            borderColor: colorHighlight,
-                            backgroundColor: colorHighlight + '33',
-                            tension: 0.1,
-                            yAxisID: 'yCPL',
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        yCPA: {
-                            type: 'linear',
-                            position: 'left',
-                            title: { display: true, text: 'CPA (€)' }
-                        },
-                        yCPL: {
-                            type: 'linear',
-                            position: 'right',
-                            title: { display: true, text: 'CPL (€)' },
-                            grid: { drawOnChartArea: false } // Só mostrar grelha principal
-                        }
-                    }
-                }
-            });
-
-            // 2. Gráfico Taxa de Conversão
-            const ctxConversion = document.getElementById('conversionChart').getContext('2d');
-            new Chart(ctxConversion, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Taxa de Conversão (Signup-FTD)',
-                            data: conversionData,
-                            backgroundColor: [
-                                colorHeader, colorHeader, colorHeader, colorHeader, colorHeader, colorHeader, 
-                                colorHighlight, // Destaque Setembro
-                                colorHighlight  // Destaque Outubro
-                            ],
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            title: { display: true, text: 'Conversão (%)' }
-                        }
-                    }
-                }
-            });
-
-            // 3. Gráfico Investimento vs FTDs
-            const ctxInvestFtd = document.getElementById('investmentFtdChart').getContext('2d');
-            new Chart(ctxInvestFtd, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Investimento (€)',
-                            data: investData,
-                            backgroundColor: colorPurple + 'CC', // CC = 80% opacity
-                            yAxisID: 'yInvest',
-                        },
-                        {
-                            label: 'FTDs (Novos Depositantes)',
-                            data: ftdData,
-                            borderColor: colorHighlight,
-                            backgroundColor: colorHighlight,
-                            type: 'line', // Tipo misto
-                            tension: 0.1,
-                            yAxisID: 'yFTD',
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        yInvest: {
-                            type: 'linear',
-                            position: 'left',
-                            title: { display: true, text: 'Investimento (€)' }
-                        },
-                        yFTD: {
-                            type: 'linear',
-                            position: 'right',
-                            title: { display: true, text: 'Nº de FTDs' },
-                            grid: { drawOnChartArea: false }
-                        }
-                    }
-                }
-            });
-
-        });
-    </script>
+    <!-- Footer -->
+    <footer class="bg-brand-dark mt-20 border-t border-brand-card">
+        <div class="container mx-auto py-6 px-4 text-center text-brand-text-soft">
+            <p>&copy; 2025 Clever Advertising. Todos os direitos reservados.</p>
+            <p class="text-sm">Relatório confidencial preparado para Alfa.bet.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

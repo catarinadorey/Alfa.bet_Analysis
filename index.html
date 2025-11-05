@@ -22,11 +22,14 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'brand-dark': '#1a202c', // Um azul-escuro/carvão
-                        'brand-card': '#2d3748', // Um pouco mais claro para cartões
-                        'brand-accent': '#FACC15', // Um dourado/amarelo para destaque
+                        'brand-dark': '#04043a', // Fundo principal
+                        'brand-card': '#2d3748', // Mantido para cartões/header (contraste)
+                        'brand-accent': '#def60e', // Novo amarelo
                         'brand-text': '#E2E8F0', // Texto claro
                         'brand-text-soft': '#A0AEC0', // Texto mais suave
+                        'brand-olive-dark': '#79891a',
+                        'brand-olive-darker': '#535f12',
+                        'brand-gray': '#747c74',
                     },
                 },
             },
@@ -49,10 +52,10 @@
             letter-spacing: 0.05em;
         }
         tbody tr:nth-child(odd) {
-            background-color: #1f2735; /* Um pouco diferente do dark */
+            background-color: #0a0a4f; /* Ligeiramente mais claro que o fundo */
         }
         tbody tr:nth-child(even) {
-            background-color: #242c3d; /* Um pouco diferente do dark */
+            background-color: #04043a; /* Cor de fundo principal */
         }
         tbody tr:hover {
             background-color: #3e4a5f; /* brand-card mais claro */
@@ -70,7 +73,7 @@
             color: #E2E8F0; /* brand-text */
         }
         tbody tr:hover th:first-child {
-            border-left: 4px solid #FACC15; /* brand-accent */
+            border-left: 4px solid #def60e; /* brand-accent */
         }
         /* Alinhamento de dados numéricos */
         .data-table td:not(:first-child), 
@@ -89,7 +92,7 @@
     <!-- Header -->
     <header class="bg-brand-card shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-center items-center h-20 space-x-12">
                 <!-- Logo Clever -->
                 <div>
                     <img class="h-10 w-auto" 

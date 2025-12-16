@@ -57,15 +57,11 @@
         }
         tbody th { font-weight: 700; color: #E2E8F0; }
         
-        /* [AJUSTE 2] REMOVIDO: .data-table th:nth-child(9), .data-table td:nth-child(9) { ... } */
-        /* [AJUSTE 2] CPP/CPA agora sem destaque especial */
-
         .data-table td:not(:first-child), .data-table th:not(:first-child) {
             text-align: right;
             font-variant-numeric: tabular-nums;
-            /* [AJUSTE 2] Adicionado: Garantir que a cor do texto da célula é a default */
             color: var(--brand-text-soft, #A0AEC0); 
-            font-weight: 500; /* Revertido para o peso padrão da célula */
+            font-weight: 500; 
         }
         
         /* Estilo para a Linha de Bloqueio (Dezembro) */
@@ -136,24 +132,24 @@
             <h2 class="text-3xl font-bold mb-8 text-center text-brand-accent">✨ Sumário Global</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
                 
-                <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-accent/50 text-center transform hover:scale-[1.02] transition duration-300">
-                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Investimento Total</p>
-                    <p class="text-4xl font-extrabold **text-brand-text**">€112,015.38</p> 
+                <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 **border-brand-success/50** text-center transform hover:scale-[1.02] transition duration-300">
+                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Investimento</p>
+                    <p class="text-4xl font-extrabold text-brand-text">€112,015.38</p> 
                 </div>
                 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-success/50 text-center transform hover:scale-[1.02] transition duration-300">
-                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Signups (Leads) Total</p>
-                    <p class="text-4xl font-extrabold **text-brand-text**">10,658</p> 
+                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Signups (Leads)</p>
+                    <p class="text-4xl font-extrabold text-brand-text">10,658</p> 
                 </div>
                 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-success text-center transform hover:scale-[1.02] transition duration-300">
-                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">FTDs (Primeiros Depósitos) Total</p>
-                    <p class="text-4xl font-extrabold **text-brand-text**">1,786</p>
+                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">FTDs (Primeiros Depósitos)</p>
+                    <p class="text-4xl font-extrabold text-brand-text">1,786</p>
                 </div>
 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-danger text-center transform hover:scale-[1.02] transition duration-300">
-                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">CPP Médio Acumulado</p>
-                    <p class="text-4xl font-extrabold **text-brand-text**">€62.72</p>
+                    <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">CPP Médio</p>
+                    <p class="text-4xl font-extrabold text-brand-text">€62.72</p>
                 </div>
 
             </div>

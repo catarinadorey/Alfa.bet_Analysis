@@ -54,14 +54,16 @@
             padding: 1rem 1.5rem;
             text-align: left;
             border-bottom: 1px solid #3e4a5f;
+            /* Corrigido: Estilo padrão para todas as células da tabela (incluindo CPP) */
+            font-weight: 500; 
+            color: #A0AEC0; 
         }
-        tbody th { font-weight: 700; color: #E2E8F0; }
+        tbody th { 
+            font-weight: 700; 
+            color: #E2E8F0; 
+        }
         
-        /* Destaque da Coluna Chave: CPP */
-        .data-table th:nth-child(9), .data-table td:nth-child(9) { 
-            font-weight: 800; 
-            color: #FC8181; /* brand-danger */
-        }
+        /* Corrigido: Alinhamento numérico */
         .data-table td:not(:first-child), .data-table th:not(:first-child) {
             text-align: right;
             font-variant-numeric: tabular-nums;
@@ -74,19 +76,9 @@
             opacity: 1;
             border-left: 5px solid #E53E3E; 
         }
-        .row-blocked th, .row-blocked td { border-bottom: 1px solid #E53E3E; }
-
-        /* Estilo para o marcador da timeline (alinha o ponto verticalmente) */
-        .timeline-marker-container {
-            position: absolute;
-            left: 50%;
-            top: 0; /* Começa no topo do contêiner flex */
-            height: 100%; /* Ocupa a altura total do contêiner flex pai */
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center; /* Centraliza verticalmente o ponto */
-            pointer-events: none; /* Garante que não interfira com cliques */
-            z-index: 10;
+        .row-blocked th, .row-blocked td { 
+            border-bottom: 1px solid #E53E3E; 
+            color: #E2E8F0; /* Garante que o texto se destaca no vermelho */
         }
     </style>
 </head>
@@ -137,7 +129,7 @@
                 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-accent/50 text-center transform hover:scale-[1.02] transition duration-300">
                     <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Investimento Total</p>
-                    <p class="text-4xl font-extrabold text-brand-accent">€112,015.38</p> 
+                    <p class="text-4xl font-extrabold text-brand-text">€112,015.38</p> 
                 </div>
                 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-success/50 text-center transform hover:scale-[1.02] transition duration-300">
@@ -152,7 +144,7 @@
 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-danger text-center transform hover:scale-[1.02] transition duration-300">
                     <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">CPP Médio Acumulado</p>
-                    <p class="text-4xl font-extrabold text-brand-danger">€62.72</p>
+                    <p class="text-4xl font-extrabold text-brand-text">€62.72</p>
                 </div>
 
             </div>

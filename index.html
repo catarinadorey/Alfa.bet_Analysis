@@ -22,7 +22,7 @@
                         'brand-dark': '#04043a', 
                         'brand-card': '#1a202c', // Fundo de cartões/header
                         'brand-accent': '#def60e', // Amarelo vibrante
-                        'brand-text': '#E2E8F0', 
+                        'brand-text': '#E2E8F0', // AGORA USADO PARA TODOS OS NÚMEROS DO SUMÁRIO
                         'brand-text-soft': '#A0AEC0', 
                         'brand-success': '#48bb78', // Verde
                         'brand-danger': '#fc8181', // Vermelho/Rosa
@@ -54,19 +54,18 @@
             padding: 1rem 1.5rem;
             text-align: left;
             border-bottom: 1px solid #3e4a5f;
-            /* Corrigido: Estilo padrão para todas as células da tabela (incluindo CPP) */
-            font-weight: 500; 
-            color: #A0AEC0; 
         }
-        tbody th { 
-            font-weight: 700; 
-            color: #E2E8F0; 
-        }
+        tbody th { font-weight: 700; color: #E2E8F0; }
         
-        /* Corrigido: Alinhamento numérico */
+        /* [AJUSTE 2] REMOVIDO: .data-table th:nth-child(9), .data-table td:nth-child(9) { ... } */
+        /* [AJUSTE 2] CPP/CPA agora sem destaque especial */
+
         .data-table td:not(:first-child), .data-table th:not(:first-child) {
             text-align: right;
             font-variant-numeric: tabular-nums;
+            /* [AJUSTE 2] Adicionado: Garantir que a cor do texto da célula é a default */
+            color: var(--brand-text-soft, #A0AEC0); 
+            font-weight: 500; /* Revertido para o peso padrão da célula */
         }
         
         /* Estilo para a Linha de Bloqueio (Dezembro) */
@@ -76,9 +75,19 @@
             opacity: 1;
             border-left: 5px solid #E53E3E; 
         }
-        .row-blocked th, .row-blocked td { 
-            border-bottom: 1px solid #E53E3E; 
-            color: #E2E8F0; /* Garante que o texto se destaca no vermelho */
+        .row-blocked th, .row-blocked td { border-bottom: 1px solid #E53E3E; }
+
+        /* Estilo para o marcador da timeline (alinha o ponto verticalmente) */
+        .timeline-marker-container {
+            position: absolute;
+            left: 50%;
+            top: 0; 
+            height: 100%; 
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center; 
+            pointer-events: none; 
+            z-index: 10;
         }
     </style>
 </head>
@@ -89,16 +98,16 @@
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-4">
                     <img class="h-10 w-10 object-contain" 
-                                src="logo-clever-quadrado.png" 
-                                alt="Logo Clever Advertising"
-                                onerror="this.src='https://placehold.co/40x40/1a202c/FACC15?text=Clever+Ads'">
+                                 src="logo-clever-quadrado.png" 
+                                 alt="Logo Clever Advertising"
+                                 onerror="this.src='https://placehold.co/40x40/1a202c/FACC15?text=Clever+Ads'">
                     <svg class="h-6 w-6 text-brand-accent animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
                     </svg>
                     <img class="h-10 w-10 object-contain" 
-                                src="logo-alfa-quadrado.jpg" 
-                                alt="Logo Alfa.bet"
-                                onerror="this.src='https://placehold.co/40x40/1a202c/FACC15?text=Alfa.bet'">
+                                 src="logo-alfa-quadrado.jpg" 
+                                 alt="Logo Alfa.bet"
+                                 onerror="this.src='https://placehold.co/40x40/1a202c/FACC15?text=Alfa.bet'">
                     <h1 class="text-xl font-bold text-brand-text hidden sm:block">Análise Google Ads</h1>
                 </div>
 
@@ -129,22 +138,22 @@
                 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-accent/50 text-center transform hover:scale-[1.02] transition duration-300">
                     <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Investimento Total</p>
-                    <p class="text-4xl font-extrabold text-brand-text">€112,015.38</p> 
+                    <p class="text-4xl font-extrabold **text-brand-text**">€112,015.38</p> 
                 </div>
                 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-success/50 text-center transform hover:scale-[1.02] transition duration-300">
                     <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Signups (Leads) Total</p>
-                    <p class="text-4xl font-extrabold text-brand-text">10,658</p> 
+                    <p class="text-4xl font-extrabold **text-brand-text**">10,658</p> 
                 </div>
                 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-success text-center transform hover:scale-[1.02] transition duration-300">
                     <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">FTDs (Primeiros Depósitos) Total</p>
-                    <p class="text-4xl font-extrabold text-brand-text">1,786</p>
+                    <p class="text-4xl font-extrabold **text-brand-text**">1,786</p>
                 </div>
 
                 <div class="bg-brand-card p-6 rounded-xl shadow-2xl border-t-4 border-brand-danger text-center transform hover:scale-[1.02] transition duration-300">
                     <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">CPP Médio Acumulado</p>
-                    <p class="text-4xl font-extrabold text-brand-text">€62.72</p>
+                    <p class="text-4xl font-extrabold **text-brand-text**">€62.72</p>
                 </div>
 
             </div>
@@ -365,7 +374,7 @@
              <div class="bg-red-900/20 border-l-8 border-red-500 text-brand-text p-8 rounded-lg shadow-2xl">
                 <div class="flex items-center mb-4">
                     <svg class="h-8 w-8 text-red-500 mr-3 animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.021 3.377 1.83 3.377h14.47c1.808 0 2.694-1.877 1.83-3.377l-7.23-12.551a1.95 1.95 0 00-1.664-1.037h-.066c-.663 0-1.282.4-1.579 1.037l-7.23 12.55z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.021 3.377 1.83 3.377h14.47c1.808 0 2.694-1.877 1.83-3.377l-7.23-12.551a1.95 1.95 0 00-1.664-1.037h-.066c-.663 0-1.282.4-1.579 1.037l-7.23 12.55z" />
                     </svg>
                     <h3 class="text-3xl font-extrabold text-red-400">🚨 Bloqueio Crítico (Prioridade Máxima)</h3>
                 </div>

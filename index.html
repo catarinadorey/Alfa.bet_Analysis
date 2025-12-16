@@ -1,406 +1,441 @@
 <!DOCTYPE html>
 <html lang="pt-PT" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análise Google Ads - Alfa.bet | Clever Advertising (Março - Dezembro)</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'brand-dark': '#04043a', // Fundo principal
-                        'brand-card': '#2d3748', // Mantido para cartões/header (contraste)
-                        'brand-accent': '#def60e', // Novo amarelo
-                        'brand-text': '#E2E8F0', // Texto claro
-                        'brand-text-soft': '#A0AEC0', // Texto mais suave
-                        'brand-olive-dark': '#79891a',
-                        'brand-olive-darker': '#535f12',
-                        'brand-gray': '#747c74',
-                    },
-                },
-            },
-        }
-    </script>
-    
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .table-wrapper {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        thead th {
-            background-color: #2d3748; /* brand-card */
-            color: #E2E8F0; /* brand-text */
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        tbody tr:nth-child(odd) {
-            background-color: #0a0a4f; /* Ligeiramente mais claro que o fundo */
-        }
-        tbody tr:nth-child(even) {
-            background-color: #04043a; /* Cor de fundo principal */
-        }
-        tbody tr:hover {
-            background-color: #3e4a5f; /* brand-card mais claro */
-        }
-        td, th {
-            padding: 1rem 1.5rem;
-            text-align: left;
-            border-bottom: 1px solid #3e4a5f;
-        }
-        th:first-child, td:first-child {
-            border-left: 4px solid transparent;
-        }
-        tbody th {
-            font-weight: 600;
-            color: #E2E8F0; /* brand-text */
-        }
-        tbody tr:hover th:first-child {
-            border-left: 4px solid #def60e; /* brand-accent */
-        }
-        /* Alinhamento de dados numéricos */
-        .data-table td:not(:first-child), 
-        .data-table th:not(:first-child) {
-            text-align: right;
-            font-variant-numeric: tabular-nums;
-        }
-        .data-table th:first-child,
-        .data-table td:first-child {
-            text-align: left;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Google Ads - Alfa.bet | Clever Advertising (Março - Dezembro)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-dark': '#04043a', 
+                        'brand-card': '#1a202c', // Mais escuro que o anterior, para maior contraste
+                        'brand-accent': '#def60e', // Amarelo vibrante
+                        'brand-text': '#E2E8F0', 
+                        'brand-text-soft': '#A0AEC0', 
+                        'brand-success': '#48bb78', // Verde
+                        'brand-danger': '#fc8181', // Vermelho/Rosa
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .table-wrapper {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        thead th {
+            background-color: #1a202c; /* brand-card */
+            color: #E2E8F0; /* brand-text */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #080845; /* Ligeiramente mais claro que o fundo */
+        }
+        tbody tr:nth-child(even) {
+            background-color: #04043a; /* Cor de fundo principal */
+        }
+        tbody tr:hover {
+            background-color: #3e4a5f;
+            cursor: pointer;
+        }
+        td, th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #3e4a5f;
+        }
+        tbody th {
+            font-weight: 700;
+            color: #E2E8F0;
+        }
+        /* Destaque da Coluna Chave: CPP */
+        .data-table th:nth-child(1),
+        .data-table td:nth-child(9) { /* CPP column */
+             font-weight: 800;
+        }
+        .data-table td:not(:first-child), 
+        .data-table th:not(:first-child) {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Estilo para a linha de Bloqueio de Dezembro */
+        .row-blocked {
+            background-color: #4b0000 !important; /* Vermelho escuro */
+            color: #E2E8F0;
+            opacity: 0.9;
+        }
+        .row-blocked th, .row-blocked td {
+            border-bottom: 1px solid #7c0000;
+        }
+    </style>
 </head>
 <body class="bg-brand-dark text-brand-text leading-relaxed">
 
-    <header class="bg-brand-dark border-b border-brand-card sticky top-0 z-50">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-center items-center h-24 space-x-6"> 
-                <div>
-                    <img class="h-20 w-20 object-contain" 
-                         src="logo-clever-quadrado.png" 
-                         alt="Logo Clever Advertising"
-                         onerror="this.src='https://placehold.co/80x80/2d3748/FACC15?text=Clever+Ads'">
-                </div>
-                
-                <div>
-                    <svg class="h-8 w-8 text-brand-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-                    </svg>
-                </div>
+    <header class="bg-brand-dark border-b border-brand-card sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center items-center h-24 space-x-6"> 
+                <div>
+                    <img class="h-20 w-20 object-contain" 
+                            src="logo-clever-quadrado.png" 
+                            alt="Logo Clever Advertising"
+                            onerror="this.src='https://placehold.co/80x80/1a202c/FACC15?text=Clever+Ads'">
+                </div>
+                 
+                <div>
+                    <svg class="h-8 w-8 text-brand-accent animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                    </svg>
+                </div>
 
-                <div>
-                    <img class="h-20 w-20 object-contain" 
-                         src="logo-alfa-quadrado.jpg" 
-                         alt="Logo Alfa.bet"
-                         onerror="this.src='https://placehold.co/80x80/2d3748/FACC15?text=Alfa.bet'">
-                </div>
-            </div>
-        </nav>
-    </header>
+                <div>
+                    <img class="h-20 w-20 object-contain" 
+                            src="logo-alfa-quadrado.jpg" 
+                            alt="Logo Alfa.bet"
+                            onerror="this.src='https://placehold.co/80x80/1a202c/FACC15?text=Alfa.bet'">
+                </div>
+            </div>
+        </nav>
+    </header>
 
-    <main class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <main class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
 
-        <section class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                Análise de Performance <span class="text-brand-accent">Google Ads</span>
-            </h1>
-            <p class="text-2xl font-light text-brand-text-soft">
-                Cliente: Alfa.bet (Março a 15 de Dezembro)
-            </p>
-        </section>
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                Análise de Performance <span class="text-brand-accent">Google Ads</span>
+            </h1>
+            <p class="text-xl font-light text-brand-text-soft">
+                Cliente: Alfa.bet (Março a 15 de Dezembro)
+            </p>
+        </section>
 
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-6 text-center">Resultados da Campanha (Mês a Mês)</h2>
-            <div class="table-wrapper overflow-x-auto rounded-lg">
-                <table class="w-full min-w-[1200px] data-table">
-                    <thead>
-                        <tr>
-                            <th>Mês</th>
-                            <th>Investimento</th>
-                            <th>Impressões</th>
-                            <th>Cliques</th>
-                            <th>CTR</th>
-                            <th>Signups (Leads)</th>
-                            <th>Custo por Lead (CPL)</th>
-                            <th>FTDs</th>
-                            <th>Custo por Aquisição (CPP/CPA)</th>
-                            <th>Taxa Conversão (Signup - FTD)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-brand-text-soft">
-                        <tr>
-                            <th scope="row">Março</th>
-                            <td>€18,416.80</td>
-                            <td>370,683</td>
-                            <td>14,813</td>
-                            <td>4.00%</td>
-                            <td>1,709</td>
-                            <td>€10.78</td>
-                            <td>114</td>
-                            <td>€161.55</td>
-                            <td>6.67%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Abril</th>
-                            <td>€11,630.73</td>
-                            <td>174,759</td>
-                            <td>11,124</td>
-                            <td>6.37%</td>
-                            <td>2,460</td>
-                            <td>€4.73</td>
-                            <td>116</td>
-                            <td>€100.26</td>
-                            <td>4.72%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Maio</th>
-                            <td>€8,519.99</td>
-                            <td>277,430</td>
-                            <td>6,333</td>
-                            <td>2.28%</td>
-                            <td>848</td>
-                            <td>€10.05</td>
-                            <td>199</td>
-                            <td>€42.81</td>
-                            <td>23.47%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Junho</th>
-                            <td>€29,425.83</td>
-                            <td>1,233,510</td>
-                            <td>25,883</td>
-                            <td>2.10%</td>
-                            <td>2,272</td>
-                            <td>€12.95</td>
-                            <td>609</td>
-                            <td>€48.32</td>
-                            <td>26.80%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Julho</th>
-                            <td>€21,244.51</td>
-                            <td>856,613</td>
-                            <td>18,718</td>
-                            <td>2.19%</td>
-                            <td>1,748</td>
-                            <td>€12.15</td>
-                            <td>333</td>
-                            <td>€63.80</td>
-                            <td>19.05%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Agosto</th>
-                            <td>€9,836.32</td>
-                            <td>461,416</td>
-                            <td>12,587</td>
-                            <td>2.73%</td>
-                            <td>870</td>
-                            <td>€11.31</td>
-                            <td>182</td>
-                            <td>€54.05</td>
-                            <td>20.92%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Setembro</th>
-                            <td>€6,224.32</td>
-                            <td>181,903</td>
-                            <td>6,188</td>
-                            <td>3.40%</td>
-                            <td>423</td>
-                            <td>€14.71</td>
-                            <td>246</td>
-                            <td>€25.30</td>
-                            <td>58.16%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Outubro</th>
-                            <td>€4,424.35</td>
-                            <td>124,690</td>
-                            <td>6,292</td>
-                            <td>5.05%</td>
-                            <td>359</td>
-                            <td>€12.32</td>
-                            <td>189</td>
-                            <td>€23.41</td>
-                            <td>52.65%</td>
-                        </tr>
-                                                <tr>
-                            <th scope="row">Novembro</th>
-                            <td>€2,441.47</td>
-                            <td>49,485</td>
-                            <td>3,063</td>
-                            <td>6.19%</td>
-                            <td>206</td>
-                            <td>€11.86</td>
-                            <td>108</td>
-                            <td>€22.63</td>
-                            <td>52.43%</td>
-                        </tr>
-                                                <tr class="bg-red-900/20">
-                            <th scope="row" class="text-red-400">Dezembro</th>
-                            <td>€1.46</td>
-                            <td>72</td>
-                            <td>2</td>
-                            <td>2.78%</td>
-                            <td>1</td>
-                            <td>€1.46</td>
-                            <td>11</td>
-                            <td>€0.13</td>
-                            <td>1100.00%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <section class="mb-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            
+            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-brand-accent/50">
+                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Investimento Total</p>
+                <p class="text-3xl font-bold text-brand-accent">€112,015.38</p> 
+                <div class="flex items-center mt-3 text-sm text-brand-text-soft">
+                    <span class="text-brand-danger font-bold mr-1">100%</span>
+                    <p>Foco na eficiência após Setembro.</p>
+                </div>
+            </div>
+            
+            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-brand-accent/50">
+                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">FTDs (First Time Depositors) Total</p>
+                <p class="text-3xl font-bold text-brand-text">1,787</p>
+                <div class="flex items-center mt-3 text-sm text-brand-text-soft">
+                    <span class="text-brand-success font-bold mr-1">58.16%</span>
+                    <p>Taxa de Conversão máxima (Set).</p>
+                </div>
+            </div>
 
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-10 text-center">Evolução Estratégica e Análise</h2>
-            
-            <div class="relative max-w-3xl mx-auto border-l-2 border-brand-accent/30">
+            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-red-500">
+                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">CPP Médio (Custo/Aquisição)</p>
+                <p class="text-3xl font-bold text-red-400">€62.68</p>
+                <div class="flex items-center mt-3 text-sm text-brand-text-soft">
+                    <span class="text-brand-danger font-bold mr-1">Bloqueado!</span>
+                    <p>Requer ação urgente do cliente.</p>
+                </div>
+            </div>
 
-                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Março - Abril : Lançamento e Estruturação</h3>
-                    <p class="text-brand-text-soft">
-                        Iniciámos a 13 de março com uma estratégia de lançamento abrangente, utilizando uma lista alargada de keywords para explorar o potencial do mercado. Como esperado, esta abordagem gerou rapidamente volume, mas a um Custo por Aquisição (CPP) inicial muito elevado de 161,55€. No entanto, o Custo por Lead (CPL) mostrou-se promissor desde o início. Financeiramente, esta fase representou um investimento inicial significativo, resultando em perdas de 18K€ e 11K€ respetivamente.
-                    </p>
-                    <p class="text-brand-text-soft mt-3">
-                        Em abril, identificámos a necessidade crítica de uma análise mais granular. Para isso, pausámos as campanhas a meio do mês para implementar trackers a nível de keyword. Esta paragem fez com que o CPP reportado de 100,26€ fosse artificialmente baixo, devido a FTDs que foram atribuídos posteriormente (late conversions).
-                    </p>
-                </div>
+        </section>
 
-                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Maio : A Primeira Grande Otimização</h3>
-                    <p class="text-brand-text-soft">
-                        Retomámos as campanhas a 13 de maio com a nova estrutura de tracking. Esta visibilidade permitiu-nos iniciar um processo rigoroso de otimização, eliminando keywords de baixa performance e melhorando os anúncios com headlines e descrições focadas em bónus. O impacto foi imediato e decisivo:
-                    </p>
-                    <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
-                        <li>O CPP caiu drasticamente para 42,81€.</li>
-                        <li>A Taxa de Conversão (Signup-FTD) mais do que duplicou, passando de uma média de 6% para 23%.</li>
-                        <li>Como resultado direto, a diferença entre investimento e lucro melhorou significativamente, reduzindo a perda mensal para 7.900€.</li>
-                    </ul>
-                </div>
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-center text-brand-accent">Resultados Detalhados da Campanha</h2>
+            <div class="table-wrapper overflow-x-auto rounded-xl">
+                <table class="w-full min-w-[1200px] data-table">
+                    <thead>
+                        <tr>
+                            <th>Mês</th>
+                            <th>Investimento</th>
+                            <th>Impressões</th>
+                            <th>Cliques</th>
+                            <th>CTR</th>
+                            <th>Signups (Leads)</th>
+                            <th>Custo por Lead (CPL)</th>
+                            <th>FTDs</th>
+                            <th>Custo por Aquisição (CPP/CPA)</th>
+                            <th>Taxa Conversão (Signup - FTD)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-brand-text-soft">
+                        <tr>
+                            <th scope="row">Março</th>
+                            <td>€18,416.80</td>
+                            <td>370,683</td>
+                            <td>14,813</td>
+                            <td>4.00%</td>
+                            <td>1,709</td>
+                            <td>€10.78</td>
+                            <td>114</td>
+                            <td>€161.55</td>
+                            <td>6.67%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Abril</th>
+                            <td>€11,630.73</td>
+                            <td>174,759</td>
+                            <td>11,124</td>
+                            <td>6.37%</td>
+                            <td>2,460</td>
+                            <td>€4.73</td>
+                            <td>116</td>
+                            <td>€100.26</td>
+                            <td>4.72%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Maio</th>
+                            <td>€8,519.99</td>
+                            <td>277,430</td>
+                            <td>6,333</td>
+                            <td>2.28%</td>
+                            <td>848</td>
+                            <td>€10.05</td>
+                            <td>199</td>
+                            <td>€42.81</td>
+                            <td>23.47%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Junho</th>
+                            <td>€29,425.83</td>
+                            <td>1,233,510</td>
+                            <td>25,883</td>
+                            <td>2.10%</td>
+                            <td>2,272</td>
+                            <td>€12.95</td>
+                            <td>609</td>
+                            <td>€48.32</td>
+                            <td>26.80%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Julho</th>
+                            <td>€21,244.51</td>
+                            <td>856,613</td>
+                            <td>18,718</td>
+                            <td>2.19%</td>
+                            <td>1,748</td>
+                            <td>€12.15</td>
+                            <td>333</td>
+                            <td>€63.80</td>
+                            <td>19.05%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Agosto</th>
+                            <td>€9,836.32</td>
+                            <td>461,416</td>
+                            <td>12,587</td>
+                            <td>2.73%</td>
+                            <td>870</td>
+                            <td>€11.31</td>
+                            <td>182</td>
+                            <td>€54.05</td>
+                            <td>20.92%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Setembro</th>
+                            <td>€6,224.32</td>
+                            <td>181,903</td>
+                            <td>6,188</td>
+                            <td>3.40%</td>
+                            <td>423</td>
+                            <td>€14.71</td>
+                            <td>246</td>
+                            <td>€25.30</td>
+                            <td>58.16%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Outubro</th>
+                            <td>€4,424.35</td>
+                            <td>124,690</td>
+                            <td>6,292</td>
+                            <td>5.05%</td>
+                            <td>359</td>
+                            <td>€12.32</td>
+                            <td>189</td>
+                            <td>€23.41</td>
+                            <td>52.65%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Novembro</th>
+                            <td>€2,441.47</td>
+                            <td>49,485</td>
+                            <td>3,063</td>
+                            <td>6.19%</td>
+                            <td>206</td>
+                            <td>€11.86</td>
+                            <td>108</td>
+                            <td>€22.63</td>
+                            <td>52.43%</td>
+                        </tr>
+                        <tr class="row-blocked">
+                            <th scope="row" class="text-red-400">Dezembro</th>
+                            <td>€1.46</td>
+                            <td>72</td>
+                            <td>2</td>
+                            <td>2.78%</td>
+                            <td>1</td>
+                            <td>€1.46</td>
+                            <td>11</td>
+                            <td>€0.13</td>
+                            <td>1100.00%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Junho : Escalabilidade Máxima</h3>
-                    <p class="text-brand-text-soft">
-                        Junho foi o primeiro mês completo com a estrutura otimizada, e a estratégia focou-se em escalar o investimento. O orçamento, os Signups e os FTDs dispararam, atingindo os valores mais altos do ano. No entanto, este crescimento veio com um custo, e o CPP de 48,32€ permaneceu acima do nosso objetivo. Financeiramente, esta foi a fase mais desafiadora: o alto investimento combinado com um CPP ainda elevado gerou a maior perda do período (-27K€), provando que escalar sem rentabilidade era insustentável.
-                    </p>
-                </div>
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-10 text-center">Evolução Estratégica e Análise</h2>
+            
+            <div class="relative max-w-3xl mx-auto border-l-2 border-brand-accent/30">
 
-                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Julho - Agosto : Controlo de Custos e Eficiência</h3>
-                    <p class="text-brand-text-soft">
-                        Com o aprendizado de junho, a estratégia para os dois meses seguintes mudou de escala para controlo. Optámos por uma redução gradual do orçamento para forçar a eficiência e trazer o CPP para dentro do objetivo. Comparado com o pico de junho, o investimento e o volume de tráfego foram reduzidos, e o CPP estabilizou na casa dos 50-60€. O ponto-chave neste período foi o aumento do valor do lucro, indicando um foco em clientes de maior qualidade, o que ajudou a controlar as perdas mesmo com um CPP ainda acima do ideal.
-                    </p>
-                </div>
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Março - Abril : Lançamento e Estruturação</h3>
+                    <p class="text-brand-text-soft">
+                        Iniciámos a 13 de março com uma estratégia de lançamento abrangente, utilizando uma lista alargada de keywords para explorar o potencial do mercado. Como esperado, esta abordagem gerou rapidamente volume, mas a um Custo por Aquisição (CPP) inicial muito elevado de 161,55€. No entanto, o Custo por Lead (CPL) mostrou-se promissor desde o início. Financeiramente, esta fase representou um investimento inicial significativo, resultando em perdas de 18K€ e 11K€ respetivamente.
+                    </p>
+                    <p class="text-brand-text-soft mt-3">
+                        Em abril, identificámos a necessidade crítica de uma análise mais granular. Para isso, pausámos as campanhas a meio do mês para implementar trackers a nível de keyword. Esta paragem fez com que o CPP reportado de 100,26€ fosse artificialmente baixo, devido a FTDs que foram atribuídos posteriormente (late conversions).
+                    </p>
+                </div>
 
-                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Setembro : A Revolução no Processo de Registo</h3>
-                    <p class="text-brand-text-soft">
-                        Os dados do mês completo de setembro confirmaram o ponto de viragem decisivo na conta. A alteração no processo de registo da Alfa.bet provou ser um sucesso absoluto e sustentado:
-                    </p>
-                     <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
-                        <li>A Taxa de Conversão (Signup-FTD) fechou o mês nuns incríveis 58%, o nível de eficiência mais alto de sempre.</li>
-                        <li>O CPP consolidou-se em 25,30€, ficando confortavelmente abaixo do nosso objetivo de 30€.</li>
-                        <li>O mais impressionante: apesar de uma redução de 37% no investimento em relação a agosto (de 9.8K€ para 6.2K€), a eficiência foi tão grande que conseguimos gerar mais 35% de FTDs (246 em Setembro vs. 182 em Agosto).</li>
-                    </ul>
-                </div>
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Maio : A Primeira Grande Otimização</h3>
+                    <p class="text-brand-text-soft">
+                        Retomámos as campanhas a 13 de maio com a nova estrutura de tracking. Esta visibilidade permitiu-nos iniciar um processo rigoroso de otimização, eliminando keywords de baixa performance e melhorando os anúncios com headlines e descrições focadas em bónus. O impacto foi imediato e decisivo:
+                    </p>
+                    <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
+                        <li>O CPP caiu drasticamente para 42,81€.</li>
+                        <li>A Taxa de Conversão (Signup-FTD) mais do que duplicou, passando de uma média de 6% para 23%.</li>
+                        <li>Como resultado direto, a diferença entre investimento e lucro melhorou significativamente, reduzindo a perda mensal para 7.900€.</li>
+                    </ul>
+                </div>
 
-                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Outubro : A Nova Estratégia de Rentabilidade</h3>
-                    <p class="text-brand-text-soft">
-                        Após uma análise financeira detalhada dos resultados, o objetivo de CPP foi redefinido para um valor muito mais agressivo de 13€ a partir de Outubro. A primeira ação foi reduzir o investimento (de 6,2k€ para 4,4k€), focando apenas no tráfego com maior potencial de eficiência.
-                    </p>
-                    <p class="text-brand-text-soft mt-3">
-                        Embora o novo objetivo ainda não tenha sido alcançado, a estratégia deu os primeiros resultados positivos: o CPP desceu para 23,41€, uma melhoria de 8% em relação a Setembro. Este progresso foi suportado por métricas de tráfego excecionais.
-                    </p>
-                </div>
-                
-                                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-card"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Novembro : Desempenho e Início do Bloqueio</h3>
-                    <p class="text-brand-text-soft">
-                        A nova estratégia de rentabilidade agressiva continuou a dar frutos em termos de custo por aquisição: o **CPP consolidou-se em 22,63€**, atingindo o ponto de rentabilidade para a conta, com CTR e Taxa de Conversão elevadas.
-                    </p>
-                    <p class="text-brand-text-soft mt-3 border-l-4 border-yellow-500 pl-3">
-                        Contudo, a 18 de Novembro, o volume de impressões e cliques caiu drasticamente devido a uma **restrição de *geo-blocking***. O Google detetou que o bot do sistema não conseguia aceder ao website do cliente, resultando em anúncios bloqueados na maioria dos geos. Este fator limitou a capacidade de escalar os resultados positivos.
-                    </p>
-                </div>
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Junho : Escalabilidade Máxima</h3>
+                    <p class="text-brand-text-soft">
+                        Junho foi o primeiro mês completo com a estrutura otimizada, e a estratégia focou-se em escalar o investimento. O orçamento, os Signups e os FTDs dispararam, atingindo os valores mais altos do ano. No entanto, este crescimento veio com um custo, e o CPP de 48,32€ permaneceu acima do nosso objetivo. Financeiramente, esta foi a fase mais desafiadora: o alto investimento combinado com um CPP ainda elevado gerou a maior perda do período (-27K€), provando que escalar sem rentabilidade era insustentável.
+                    </p>
+                </div>
 
-                                <div class="mb-10 ml-8 pl-6 relative">
-                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 ring-4 ring-red-300"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-red-400">Dezembro (1ª Quinzena) : Bloqueio Total de Anúncios</h3>
-                    <p class="text-brand-text-soft">
-                        A primeira quinzena de Dezembro reflete o impacto total da restrição de *geo-blocking*.
-                    </p>
-                    <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
-                        <li>O **Investimento caiu para apenas 1,46€** e o volume de impressões foi nulo, provando que as campanhas estão ativamente bloqueadas.</li>
-                        <li>Oportunidade perdida: Este bloqueio impediu a conta de explorar o período sazonal de alta no final do ano.</li>
-                        <li class="font-bold text-brand-text">A retoma do investimento só é possível após a correção, por parte do Alfa.bet, do acesso ao site para o bot do Google.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section class="max-w-4xl mx-auto bg-brand-card p-8 rounded-lg shadow-2xl mb-16">
-            <h2 class="text-3xl font-bold mb-6 text-center">Conclusão e Próximos Passos</h2>
-            <div class="space-y-4 text-brand-text-soft text-lg">
-                <p>
-                    O mês de Novembro confirmou que as nossas otimizações atingiram a **rentabilidade da conta**, com o CPP a estabilizar em 22,63€, validando o trabalho de refinação de keywords e do funil de conversão.
-                </p>
-                <p class="font-semibold text-red-400">
-                    Contudo, desde 18 de Novembro, as campanhas foram **bloqueadas por *geo-blocking*** devido a um problema de acesso ao site pelo bot do Google. Esta situação impediu a escalabilidade rentável planeada para o período sazonal de Dezembro.
-                </p>
-                <p class="font-semibold text-brand-text border-l-4 border-brand-accent pl-3">
-                    **Próximo Passo Urgente:** O investimento só poderá ser retomado após o Alfa.bet garantir o acesso irrestrito ao site por parte do Google. Assim que o problema for corrigido, o plano é retomar a estratégia de Dezembro: **Escalabilidade Rentável** com foco na maximização do lucro.
-                </p>
-            </div>
-        </section>
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Julho - Agosto : Controlo de Custos e Eficiência</h3>
+                    <p class="text-brand-text-soft">
+                        Com o aprendizado de junho, a estratégia para os dois meses seguintes mudou de escala para controlo. Optámos por uma redução gradual do orçamento para forçar a eficiência e trazer o CPP para dentro do objetivo. Comparado com o pico de junho, o investimento e o volume de tráfego foram reduzidos, e o CPP estabilizou na casa dos 50-60€. O ponto-chave neste período foi o aumento do valor do lucro, indicando um foco em clientes de maior qualidade, o que ajudou a controlar as perdas mesmo com um CPP ainda acima do ideal.
+                    </p>
+                </div>
 
-        <section class="max-w-4xl mx-auto">
-             <div class="bg-red-900/10 border-l-4 border-red-500 text-brand-text p-6 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-bold mb-4 text-red-400">🚨 Bloqueio Crítico (Prioridade Máxima)</h3>
-                <p class="mb-4">
-                    **Aguardamos a correção imediata do problema de *Geo-Blocking*** no website da Alfa.bet para permitir o acesso do Google Bot e desbloquear os anúncios.
-                </p>
-                <h3 class="text-2xl font-bold mb-4 text-brand-accent">Outros Pedidos Pendentes (Aguardamos Alfa.bet)</h3>
-                <ul class="list-disc list-inside space-y-2 text-brand-text-soft">
-                    <li>Ofertas que serão feitas nos próximos meses (estamos sem ofertas neste momento)</li>
-                    <li>Calendário dos próximos jogos</li>
-                    <li>Importação Offline de FTDs (ainda não foi falado com eles)</li>
-                    <li>Página de promoções atualizada no site (sugestão minha)</li>
-                    <li>Popup de registo e início de sessão no site (sugestão minha)</li>
-                </ul>
-            </div>
-        </section>
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Setembro : A Revolução no Processo de Registo</h3>
+                    <p class="text-brand-text-soft">
+                        Os dados do mês completo de setembro confirmaram o ponto de viragem decisivo na conta. A alteração no processo de registo da Alfa.bet provou ser um sucesso absoluto e sustentado:
+                    </p>
+                    <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
+                        <li>A Taxa de Conversão (Signup-FTD) fechou o mês nuns incríveis 58%, o nível de eficiência mais alto de sempre.</li>
+                        <li>O CPP consolidou-se em 25,30€, ficando confortavelmente abaixo do nosso objetivo de 30€.</li>
+                        <li>O mais impressionante: apesar de uma redução de 37% no investimento em relação a agosto (de 9.8K€ para 6.2K€), a eficiência foi tão grande que conseguimos gerar mais 35% de FTDs (246 em Setembro vs. 182 em Agosto).</li>
+                    </ul>
+                </div>
 
-    </main>
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Outubro : A Nova Estratégia de Rentabilidade</h3>
+                    <p class="text-brand-text-soft">
+                        Após uma análise financeira detalhada dos resultados, o objetivo de CPP foi redefinido para um valor muito mais agressivo de 13€ a partir de Outubro. A primeira ação foi reduzir o investimento (de 6,2k€ para 4,4k€), focando apenas no tráfego com maior potencial de eficiência.
+                    </p>
+                    <p class="text-brand-text-soft mt-3">
+                        Embora o novo objetivo ainda não tenha sido alcançado, a estratégia deu os primeiros resultados positivos: o CPP desceu para 23,41€, uma melhoria de 8% em relação a Setembro. Este progresso foi suportado por métricas de tráfego excecionais.
+                    </p>
+                </div>
+                
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Novembro : Desempenho e Início do Bloqueio</h3>
+                    <p class="text-brand-text-soft">
+                        A nova estratégia de rentabilidade agressiva continuou a dar frutos em termos de custo por aquisição: o **CPP consolidou-se em 22,63€**, atingindo o ponto de rentabilidade para a conta, com CTR e Taxa de Conversão elevadas.
+                    </p>
+                    <p class="text-brand-text-soft mt-3 border-l-4 border-yellow-500 pl-3">
+                        Contudo, a 18 de Novembro, o volume de impressões e cliques caiu drasticamente devido a uma **restrição de *geo-blocking***. O Google detetou que o bot do sistema não conseguia aceder ao website do cliente, resultando em anúncios bloqueados na maioria dos geos. Este fator limitou a capacidade de escalar os resultados positivos.
+                    </p>
+                </div>
 
-    <footer class="bg-brand-dark mt-20 border-t border-brand-card">
-        <div class="container mx-auto py-6 px-4 text-center text-brand-text-soft">
-            <p>&copy; 2025 Clever Advertising. Todos os direitos reservados.</p>
-            <p class="text-sm">Relatório confidencial preparado para Alfa.bet.</p>
-        </div>
-    </footer>
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-red-900/20 rounded-lg border-2 border-red-500">
+                    <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 ring-4 ring-red-300"></span>
+                    <h3 class="text-2xl font-semibold mb-2 text-red-400">Dezembro (1ª Quinzena) : Bloqueio Total de Anúncios</h3>
+                    <p class="text-brand-text-soft">
+                        A primeira quinzena de Dezembro reflete o impacto total da restrição de *geo-blocking*.
+                    </p>
+                    <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
+                        <li>O **Investimento caiu para apenas 1,46€** e o volume de impressões foi nulo, provando que as campanhas estão ativamente bloqueadas.</li>
+                        <li>Oportunidade perdida: Este bloqueio impediu a conta de explorar o período sazonal de alta no final do ano.</li>
+                        <li class="font-bold text-brand-text">A retoma do investimento só é possível após a correção, por parte do Alfa.bet, do acesso ao site para o bot do Google.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="max-w-4xl mx-auto bg-brand-card p-8 rounded-lg shadow-2xl mb-16 border-t-8 border-brand-accent">
+            <h2 class="text-3xl font-bold mb-6 text-center">Conclusão e Próximos Passos</h2>
+            <div class="space-y-4 text-brand-text-soft text-lg">
+                <p>
+                    O mês de Novembro confirmou que as nossas otimizações atingiram a **rentabilidade da conta**, com o CPP a estabilizar em 22,63€, validando o trabalho de refinação de keywords e do funil de conversão.
+                </p>
+                <p class="font-semibold text-red-400">
+                    Contudo, desde 18 de Novembro, as campanhas foram **bloqueadas por *geo-blocking*** devido a um problema de acesso ao site pelo bot do Google. Esta situação impediu a escalabilidade rentável planeada para o período sazonal de Dezembro.
+                </p>
+                <p class="font-semibold text-brand-text border-l-4 border-brand-accent pl-3">
+                    **Próximo Passo Urgente:** O investimento só poderá ser retomado após o Alfa.bet garantir o acesso irrestrito ao site por parte do Google. Assim que o problema for corrigido, o plano é retomar a estratégia de Dezembro: **Escalabilidade Rentável** com foco na maximização do lucro.
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto">
+             <div class="bg-red-900/10 border-l-4 border-red-500 text-brand-text p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-red-400">🚨 Bloqueio Crítico (Prioridade Máxima)</h3>
+                <p class="mb-4">
+                    **Aguardamos a correção imediata do problema de *Geo-Blocking*** no website da Alfa.bet para permitir o acesso do Google Bot e desbloquear os anúncios.
+                </p>
+                <h3 class="text-2xl font-bold mb-4 text-brand-accent">Outros Pedidos Pendentes (Aguardamos Alfa.bet)</h3>
+                <ul class="list-disc list-inside space-y-2 text-brand-text-soft">
+                    <li>Ofertas que serão feitas nos próximos meses (estamos sem ofertas neste momento)</li>
+                    <li>Calendário dos próximos jogos</li>
+                    <li>Importação Offline de FTDs (ainda não foi falado com eles)</li>
+                    <li>Página de promoções atualizada no site (sugestão minha)</li>
+                    <li>Popup de registo e início de sessão no site (sugestão minha)</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-brand-dark mt-20 border-t border-brand-card">
+        <div class="container mx-auto py-6 px-4 text-center text-brand-text-soft">
+            <p>&copy; 2025 Clever Advertising. Todos os direitos reservados.</p>
+            <p class="text-sm">Relatório confidencial preparado para Alfa.bet.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

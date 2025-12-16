@@ -75,6 +75,19 @@
             border-left: 5px solid #E53E3E; 
         }
         .row-blocked th, .row-blocked td { border-bottom: 1px solid #E53E3E; }
+
+        /* Estilo para o marcador da timeline (alinha o ponto verticalmente) */
+        .timeline-marker-container {
+            position: absolute;
+            left: 50%;
+            top: 0; /* Começa no topo do contêiner flex */
+            height: 100%; /* Ocupa a altura total do contêiner flex pai */
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center; /* Centraliza verticalmente o ponto */
+            pointer-events: none; /* Garante que não interfira com cliques */
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="bg-brand-dark text-brand-text leading-relaxed">
@@ -209,7 +222,10 @@
             <div class="relative max-w-4xl mx-auto">
                 <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-brand-accent/20 hidden md:block"></div>
 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-brand-accent rounded-full ring-4 ring-brand-dark shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10">
                         <div class="bg-brand-card/30 p-5 rounded-xl shadow-lg border-l-4 border-brand-accent">
                             <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Março - Abril : Lançamento e Estruturação</h3>
@@ -221,13 +237,14 @@
                             </p>
                         </div>
                     </div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-brand-accent rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-2 ring-4 ring-brand-dark shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 pt-5 md:pt-0"></div>
                 </div>
 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-brand-accent rounded-full ring-4 ring-brand-dark shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10 order-2 md:order-1 pt-5 md:pt-0"></div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-brand-accent rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-[270px] ring-4 ring-brand-dark shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 order-1 md:order-2">
                         <div class="bg-brand-card/30 p-5 rounded-xl shadow-lg border-r-4 border-brand-accent">
                             <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Maio : A Primeira Grande Otimização</h3>
@@ -243,7 +260,10 @@
                     </div>
                 </div>
                 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-brand-accent rounded-full ring-4 ring-brand-dark shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10">
                         <div class="bg-brand-card/30 p-5 rounded-xl shadow-lg border-l-4 border-brand-accent">
                             <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Junho : Escalabilidade Máxima</h3>
@@ -252,13 +272,14 @@
                             </p>
                         </div>
                     </div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-brand-accent rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-[500px] ring-4 ring-brand-dark shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 pt-5 md:pt-0"></div>
                 </div>
 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-brand-accent rounded-full ring-4 ring-brand-dark shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10 order-2 md:order-1 pt-5 md:pt-0"></div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-brand-accent rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-[730px] ring-4 ring-brand-dark shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 order-1 md:order-2">
                         <div class="bg-brand-card/30 p-5 rounded-xl shadow-lg border-r-4 border-brand-accent">
                             <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Julho - Agosto : Controlo de Custos e Eficiência</h3>
@@ -269,7 +290,10 @@
                     </div>
                 </div>
                 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-brand-accent rounded-full ring-4 ring-brand-dark shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10">
                         <div class="bg-brand-card/30 p-5 rounded-xl shadow-lg border-l-4 border-brand-accent">
                             <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Setembro : A Revolução no Processo de Registo</h3>
@@ -283,13 +307,14 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-brand-accent rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-[930px] ring-4 ring-brand-dark shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 pt-5 md:pt-0"></div>
                 </div>
 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-brand-accent rounded-full ring-4 ring-brand-dark shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10 order-2 md:order-1 pt-5 md:pt-0"></div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-brand-accent rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-[1270px] ring-4 ring-brand-dark shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 order-1 md:order-2">
                         <div class="bg-brand-card/30 p-5 rounded-xl shadow-lg border-r-4 border-brand-accent">
                             <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Outubro : A Nova Estratégia de Rentabilidade</h3>
@@ -303,7 +328,10 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-brand-accent rounded-full ring-4 ring-brand-dark shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10">
                         <div class="bg-brand-card/30 p-5 rounded-xl shadow-lg border-l-4 border-brand-accent">
                             <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Novembro : Prova de Rentabilidade e Início do Bloqueio</h3>
@@ -316,13 +344,14 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-brand-accent rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-[1600px] ring-4 ring-brand-dark shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 pt-5 md:pt-0"></div>
                 </div>
                 
-                <div class="flex flex-col md:flex-row mb-10 items-start">
+                <div class="flex flex-col md:flex-row mb-10 items-start relative">
+                    <div class="hidden md:block timeline-marker-container">
+                        <div class="h-4 w-4 bg-red-500 rounded-full ring-4 ring-red-300 shadow-xl"></div>
+                    </div>
                     <div class="w-full md:w-1/2 md:pr-10 order-2 md:order-1 pt-5 md:pt-0"></div>
-                    <div class="hidden md:flex items-center justify-center h-4 w-4 bg-red-500 rounded-full absolute left-1/2 transform -translate-x-1/2 top-0 mt-[1920px] ring-4 ring-red-300 shadow-xl"></div>
                     <div class="w-full md:w-1/2 md:pl-10 order-1 md:order-2">
                         <div class="bg-red-900/40 p-5 rounded-xl shadow-lg border-r-4 border-red-500">
                             <h3 class="text-2xl font-semibold mb-2 text-red-400">Dezembro (1ª Quinzena) : Bloqueio Total de Anúncios</h3>

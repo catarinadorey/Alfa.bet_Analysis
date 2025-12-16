@@ -70,33 +70,6 @@
             opacity: 0.9;
         }
         .row-blocked th, .row-blocked td { border-bottom: 1px solid #7c0000; }
-        
-        /* Estilos para a Tabela Diária (Novembro) */
-        .daily-table thead th {
-            background-color: #1a202c;
-            border-bottom: 2px solid #def60e;
-        }
-        .daily-table td { padding: 0.75rem 1.5rem; }
-        
-        /* Cor de fundo para o período de performance antes do bloqueio */
-        .pre-block-row {
-            background-color: #002e0c !important; /* Verde escuro */
-            color: #E2E8F0;
-        }
-        /* Cor de fundo para o período pós-bloqueio */
-        .post-block-row {
-            background-color: #452121 !important; /* Vermelho escuro/castanho */
-            opacity: 0.9;
-        }
-        /* Linha de separação do dia do bloqueio */
-        .block-separator td {
-            border-top: 3px solid #def60e !important; 
-            font-weight: 700 !important;
-            background-color: #04043a !important; 
-            color: #def60e !important;
-            text-align: center;
-            letter-spacing: 0.1em;
-        }
     </style>
 </head>
 <body class="bg-brand-dark text-brand-text leading-relaxed">
@@ -138,33 +111,30 @@
             </p>
         </section>
 
-        <section class="mb-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <section class="mb-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
             
-            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-brand-accent/50">
+            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-brand-accent/50 text-center">
                 <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Investimento Total</p>
                 <p class="text-3xl font-bold text-brand-accent">€112,015.38</p> 
-                <div class="flex items-center mt-3 text-sm text-brand-text-soft">
-                    <span class="text-brand-danger font-bold mr-1">Queda de 99% (Dez)</span>
-                    <p>Foco na eficiência antes do bloqueio.</p>
-                </div>
+                <p class="text-xs text-brand-text-soft mt-1">Acumulado Março a Dezembro</p>
             </div>
             
-            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-brand-accent/50">
-                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">FTDs (First Time Depositors) Total</p>
-                <p class="text-3xl font-bold text-brand-text">1,787</p>
-                <div class="flex items-center mt-3 text-sm text-brand-text-soft">
-                    <span class="text-brand-success font-bold mr-1">58.16%</span>
-                    <p>Taxa de Conversão máxima (Set).</p>
-                </div>
+            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-brand-accent/50 text-center">
+                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">Signups (Leads) Total</p>
+                <p class="text-3xl font-bold text-brand-text">10,658</p> 
+                <p class="text-xs text-brand-text-soft mt-1">Volume bruto de registos</p>
+            </div>
+            
+            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-brand-accent/50 text-center">
+                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">FTDs (Primeiros Depósitos) Total</p>
+                <p class="text-3xl font-bold text-brand-text">1,786</p>
+                <p class="text-xs text-brand-text-soft mt-1">Indicador de aquisição</p>
             </div>
 
-            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-red-500">
-                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">CPP Médio (Custo/Aquisição)</p>
-                <p class="text-3xl font-bold text-red-400">€62.68</p>
-                <div class="flex items-center mt-3 text-sm text-brand-text-soft">
-                    <span class="text-brand-danger font-bold mr-1">Bloqueado!</span>
-                    <p>Requer ação urgente do cliente.</p>
-                </div>
+            <div class="bg-brand-card p-6 rounded-xl shadow-lg border-t-4 border-red-500 text-center">
+                <p class="text-brand-text-soft text-sm uppercase tracking-wider font-semibold mb-2">CPP Médio Acumulado</p>
+                <p class="text-3xl font-bold text-red-400">€62.72</p>
+                <p class="text-xs text-brand-danger font-bold mt-1">Objetivo: €13.00</p>
             </div>
 
         </section>
@@ -196,17 +166,17 @@
                         <tr> <th scope="row">Agosto</th> <td>€9,836.32</td> <td>461,416</td> <td>12,587</td> <td>2.73%</td> <td>870</td> <td>€11.31</td> <td>182</td> <td>€54.05</td> <td>20.92%</td> </tr>
                         <tr> <th scope="row">Setembro</th> <td>€6,224.32</td> <td>181,903</td> <td>6,188</td> <td>3.40%</td> <td>423</td> <td>€14.71</td> <td>246</td> <td>€25.30</td> <td>58.16%</td> </tr>
                         <tr> <th scope="row">Outubro</th> <td>€4,424.35</td> <td>124,690</td> <td>6,292</td> <td>5.05%</td> <td>359</td> <td>€12.32</td> <td>189</td> <td>€23.41</td> <td>52.65%</td> </tr>
-                        <tr>
-                            <th scope="row">Novembro</th>
-                            <td>€2,441.47</td>
-                            <td>49,485</td>
-                            <td>3,063</td>
-                            <td>6.19%</td>
-                            <td>206</td>
-                            <td>€11.86</td>
-                            <td>108</td>
-                            <td>€22.63</td>
-                            <td>52.43%</td>
+                        <tr> 
+                            <th scope="row">Novembro</th> 
+                            <td>€2,441.47</td> 
+                            <td>49,485</td> 
+                            <td>3,063</td> 
+                            <td>6.19%</td> 
+                            <td>206</td> 
+                            <td>€11.86</td> 
+                            <td>108</td> 
+                            <td>€22.63</td> 
+                            <td>52.43%</td> 
                         </tr>
                         <tr class="row-blocked">
                             <th scope="row" class="text-red-400">Dezembro</th>
@@ -224,98 +194,7 @@
                 </table>
             </div>
         </section>
-
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-6 text-center">Novembro: <span class="text-brand-accent">Análise Diária Detalhada</span> (Performance vs. Bloqueio)</h2>
-            <p class="text-center text-brand-text-soft mb-6 max-w-4xl mx-auto">
-                A análise diária de Novembro é crucial para provar que a queda de volume não foi causada por ineficiência estratégica, mas sim pelo bloqueio de *geo-blocking* a partir do dia 18.
-            </p>
-            <div class="table-wrapper overflow-x-auto rounded-xl max-w-6xl mx-auto">
-                <table class="w-full min-w-[1000px] daily-table">
-                    <thead>
-                        <tr>
-                            <th>Dia</th>
-                            <th>Impressões</th>
-                            <th>Cliques</th>
-                            <th>Custo</th>
-                            <th>Signups</th>
-                            <th>FTDs</th>
-                            <th>CPP</th>
-                            <th>% Signup to FTD</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-brand-text-soft">
-                        <tr class="pre-block-row font-bold">
-                            <th scope="row">7 Nov 2025</th>
-                            <td>13,511</td>
-                            <td>1,152</td>
-                            <td>€179.99</td>
-                            <td>11</td>
-                            <td>3</td>
-                            <td>€59.97</td>
-                            <td>27%</td>
-                        </tr>
-                         <tr class="pre-block-row">
-                            <th scope="row">13 Nov 2025</th>
-                            <td>7,249</td>
-                            <td>1,088</td>
-                            <td>€123.00</td>
-                            <td>12</td>
-                            <td>5</td>
-                            <td>€24.60</td>
-                            <td>42%</td>
-                        </tr>
-                        <tr class="pre-block-row font-bold">
-                            <th scope="row">17 Nov 2025</th>
-                            <td>1,107</td>
-                            <td>75</td>
-                            <td>€46.04</td>
-                            <td>3</td>
-                            <td>2</td>
-                            <td class="text-brand-success">€23.02</td>
-                            <td>67%</td>
-                        </tr>
-                        <tr class="block-separator">
-                            <td colspan="8">18 DE NOVEMBRO: INÍCIO DA RESTRIÇÃO GEO-BLOCKING</td>
-                        </tr>
-                        <tr class="post-block-row">
-                            <th scope="row">18 Nov 2025</th>
-                            <td>475</td>
-                            <td>33</td>
-                            <td>€32.54</td>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>€32.54</td>
-                            <td>50%</td>
-                        </tr>
-                        <tr class="post-block-row">
-                            <th scope="row">19 Nov 2025</th>
-                            <td>88</td>
-                            <td>10</td>
-                            <td>€12.42</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>N/A</td>
-                            <td>0%</td>
-                        </tr>
-                        <tr class="post-block-row">
-                            <th scope="row">20 Nov 2025</th>
-                            <td>374</td>
-                            <td>37</td>
-                            <td>€76.39</td>
-                            <td>1</td>
-                            <td>4</td>
-                            <td class="text-brand-success">€19.10</td>
-                            <td>300% (FTDs Tardia)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-center text-brand-text-soft mt-4 italic">
-                O volume de impressões e cliques caiu drasticamente após 18/11. No entanto, o CPP mensal fechou em **€22.63**, confirmando a rentabilidade estratégica *anterior* ao problema técnico.
-            </p>
-        </section>
-
+        
         <section class="mb-16">
             <h2 class="text-3xl font-bold mb-10 text-center">Evolução Estratégica e Análise</h2>
             
@@ -384,34 +263,35 @@
                         Embora o novo objetivo ainda não tenha sido alcançado, a estratégia deu os primeiros resultados positivos: o CPP desceu para 23,41€, uma melhoria de 8% em relação a Setembro. Este progresso foi suportado por métricas de tráfego excecionais.
                     </p>
                 </div>
-
-                                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg">
+               
+                                <div class="mb-10 ml-8 pl-6 relative p-4 bg-brand-card/20 rounded-lg border-2 border-brand-success/50">
                     <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent ring-4 ring-brand-dark"></span>
-                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Novembro : Performance Comprovada e Bloqueio</h3>
+                    <h3 class="text-2xl font-semibold mb-2 text-brand-accent">Novembro : Prova de Rentabilidade e Início do Bloqueio</h3>
                     <p class="text-brand-text-soft">
-                        A otimização em Novembro continuou a comprovar a eficácia da estratégia: o CPP consolidou-se em **€22,63** no mês. A análise diária (ver secção detalhada) mostra que a performance era consistentemente forte e rentável nos primeiros 17 dias do mês.
+                        Novembro provou a **rentabilidade da estratégia** implementada: o CPP mensal consolidado foi de **€22,63**. Este valor foi alcançado apesar da crise de volume que começou a meio do mês.
                     </p>
                     <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
-                        <li>**Antes do dia 18:** O investimento estava a gerar FTDs com um CPP dentro da zona de rentabilidade.</li>
-                        <li>**Bloqueio:** A partir de 18/11, o volume de impressões e cliques caiu drasticamente, resultando num investimento total 45% inferior a Outubro (€2.441,47 vs. €4.424,35), devido à restrição técnica de *geo-blocking*.</li>
+                        <li>**Performance até 17/11:** Nos primeiros 17 dias, a performance estava excelente, com o CPP a rondar os €25.30 e a Taxa de Conversão mantendo-se acima dos 50%. A conta estava em crescimento rentável.</li>
+                        <li class="font-semibold text-red-400">**Bloqueio a 18/11:** A partir do dia 18, houve uma queda abrupta de mais de 90% no volume diário de impressões e cliques. Esta quebra foi causada por uma **restrição de *geo-blocking*** que impediu o Google Bot de aceder ao site, bloqueando os anúncios.</li>
+                        <li>O investimento mensal total foi limitado a apenas **€2.441,47**, provando que o problema foi técnico e não estratégico.</li>
                     </ul>
                 </div>
 
-                                <div class="mb-10 ml-8 pl-6 relative p-4 bg-red-900/20 rounded-lg border-2 border-red-500">
+                <div class="mb-10 ml-8 pl-6 relative p-4 bg-red-900/20 rounded-lg border-2 border-red-500">
                     <span class="absolute -left-[11px] top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 ring-4 ring-red-300"></span>
                     <h3 class="text-2xl font-semibold mb-2 text-red-400">Dezembro (1ª Quinzena) : Bloqueio Total de Anúncios</h3>
                     <p class="text-brand-text-soft">
                         A primeira quinzena de Dezembro reflete o impacto total da restrição de *geo-blocking*.
                     </p>
                     <ul class="list-disc list-inside text-brand-text-soft mt-3 space-y-1">
-                        <li>O Investimento caiu para apenas **1,46€** e o volume de impressões foi nulo, provando que as campanhas estão ativamente bloqueadas.</li>
+                        <li>O Investimento caiu para apenas 1,46€ e o volume de impressões foi nulo, provando que as campanhas estão ativamente bloqueadas.</li>
                         <li>Oportunidade perdida: Este bloqueio impediu a conta de explorar o período sazonal de alta no final do ano.</li>
                         <li class="font-bold text-brand-text">A retoma do investimento só é possível após a correção, por parte do Alfa.bet, do acesso ao site para o bot do Google.</li>
                     </ul>
                 </div>
             </div>
         </section>
-        
+       
         <section class="max-w-4xl mx-auto bg-brand-card p-8 rounded-lg shadow-2xl mb-16 border-t-8 border-brand-accent">
             <h2 class="text-3xl font-bold mb-6 text-center">Conclusão e Próximos Passos</h2>
             <div class="space-y-4 text-brand-text-soft text-lg">
@@ -431,15 +311,15 @@
              <div class="bg-red-900/10 border-l-4 border-red-500 text-brand-text p-6 rounded-lg shadow-lg">
                 <h3 class="text-2xl font-bold mb-4 text-red-400">🚨 Bloqueio Crítico (Prioridade Máxima)</h3>
                 <p class="mb-4">
-                    **Aguardamos a correção imediata do problema de *Geo-Blocking*** no website da Alfa.bet para permitir o acesso do Google Bot e desbloquear os anúncios.
+                    **Aguardamos a correção do problema de *Geo-Blocking*** no website da Alfa.bet para permitir o acesso do Google Bot e os anúncios serem desbloqueados.
                 </p>
                 <h3 class="text-2xl font-bold mb-4 text-brand-accent">Outros Pedidos Pendentes (Aguardamos Alfa.bet)</h3>
                 <ul class="list-disc list-inside space-y-2 text-brand-text-soft">
-                    <li>Ofertas que serão feitas nos próximos meses (estamos sem ofertas neste momento)</li>
+                    <li>Ofertas que serão feitas nos próximos meses</li>
                     <li>Calendário dos próximos jogos</li>
-                    <li>Importação Offline de FTDs (ainda não foi falado com eles)</li>
-                    <li>Página de promoções atualizada no site (sugestão minha)</li>
-                    <li>Popup de registo e início de sessão no site (sugestão minha)</li>
+                    <li>Importação Offline de FTDs</li>
+                    <li>Página de promoções atualizada no site</li>
+                    <li>Popup de registo e início de sessão no site</li>
                 </ul>
             </div>
         </section>

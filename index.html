@@ -20,12 +20,12 @@
                     },
                     colors: {
                         'brand-dark': '#04043a', 
-                        'brand-card': '#1a202c', // Fundo de cartões/header
-                        'brand-accent': '#def60e', // Amarelo vibrante
-                        'brand-text': '#E2E8F0', // AGORA USADO PARA TODOS OS NÚMEROS DO SUMÁRIO
-                        'brand-text-soft': '#A0AEC0', 
-                        'brand-success': '#48bb78', // Verde
-                        'brand-danger': '#fc8181', // Vermelho/Rosa
+                        'brand-card': '#1a202c',
+                        'brand-accent': '#def60e',
+                        'brand-text': '#E2E8F0',
+                        'brand-text-soft': '#A0AEC0',
+                        'brand-success': '#48bb78',
+                        'brand-danger': '#fc8181',
                     },
                 },
             },
@@ -33,20 +33,17 @@
     </script>
     
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+        body { font-family: 'Inter', sans-serif; }
         .table-wrapper {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 10px 15px -3px rgba(0,0,0,0.3);
         }
         thead th {
-            background-color: #1a202c; /* brand-card */
+            background-color: #1a202c;
             color: #E2E8F0;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        /* Zebra-striping para melhor leitura */
         tbody tr:nth-child(odd) { background-color: #080845; }
         tbody tr:nth-child(even) { background-color: #04043a; }
         tbody tr:hover { background-color: #3e4a5f; cursor: pointer; }
@@ -56,66 +53,64 @@
             border-bottom: 1px solid #3e4a5f;
         }
         tbody th { font-weight: 700; color: #E2E8F0; }
-        
-        .data-table td:not(:first-child), .data-table th:not(:first-child) {
+        .data-table td:not(:first-child),
+        .data-table th:not(:first-child) {
             text-align: right;
             font-variant-numeric: tabular-nums;
-            color: var(--brand-text-soft, #A0AEC0); 
-            font-weight: 500; 
+            color: #A0AEC0;
+            font-weight: 500;
         }
-        
-        /* Estilo para a Linha de Bloqueio (Dezembro) */
         .row-blocked {
-            background-color: #5c0a0a !important; 
+            background-color: #5c0a0a !important;
             color: #E2E8F0;
-            opacity: 1;
-            border-left: 5px solid #E53E3E; 
+            border-left: 5px solid #E53E3E;
         }
-        .row-blocked th, .row-blocked td { border-bottom: 1px solid #E53E3E; }
-
-        /* Estilo para o marcador da timeline (alinha o ponto verticalmente) */
+        .row-blocked th, .row-blocked td {
+            border-bottom: 1px solid #E53E3E;
+        }
         .timeline-marker-container {
             position: absolute;
             left: 50%;
-            top: 0; 
-            height: 100%; 
+            top: 0;
+            height: 100%;
             transform: translateX(-50%);
             display: flex;
-            align-items: center; 
-            pointer-events: none; 
+            align-items: center;
+            pointer-events: none;
             z-index: 10;
         }
     </style>
 </head>
+
 <body class="bg-brand-dark text-brand-text leading-relaxed">
 
-    <header class="bg-brand-card shadow-xl sticky top-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-4">
-                    <img class="h-10 w-10 object-contain" 
-                                 src="logo-clever-quadrado.png" 
-                                 alt="Logo Clever Advertising"
-                                 onerror="this.src='https://placehold.co/40x40/1a202c/FACC15?text=Clever+Ads'">
-                    <svg class="h-6 w-6 text-brand-accent animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-                    </svg>
-                    <img class="h-10 w-10 object-contain" 
-                                 src="logo-alfa-quadrado.jpg" 
-                                 alt="Logo Alfa.bet"
-                                 onerror="this.src='https://placehold.co/40x40/1a202c/FACC15?text=Alfa.bet'">
-                    <h1 class="text-xl font-bold text-brand-text hidden sm:block">Análise Google Ads</h1>
-                </div>
-
-                <nav class="space-x-4 text-sm font-medium">
-                    <a href="#sumario" class="text-brand-accent hover:text-white transition duration-300 border-b-2 border-transparent hover:border-brand-accent py-2">Sumário</a>
-                    <a href="#detalhes-mensais" class="text-brand-text-soft hover:text-white transition duration-300 border-b-2 border-transparent hover:border-brand-accent py-2">Detalhes Mensais</a>
-                    <a href="#evolucao" class="text-brand-text-soft hover:text-white transition duration-300 border-b-2 border-transparent hover:border-brand-accent py-2">Evolução</a>
-                    <a href="#proximos-passos" class="text-brand-danger hover:text-white transition duration-300 border-b-2 border-transparent hover:border-brand-danger py-2">🚨 Bloqueio Crítico</a>
-                </nav>
+<!-- HEADER -->
+<header class="bg-brand-dark shadow-xl sticky top-0 z-50 border-b border-white/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <div class="flex items-center space-x-4">
+                <img class="h-10 w-10 object-contain"
+                     src="logo-clever-quadrado.png"
+                     alt="Logo Clever Advertising">
+                <svg class="h-6 w-6 text-brand-accent animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                </svg>
+                <img class="h-10 w-10 object-contain"
+                     src="logo-alfa-quadrado.jpg"
+                     alt="Logo Alfa.bet">
+                <h1 class="text-xl font-bold hidden sm:block">Análise Google Ads</h1>
             </div>
+
+            <nav class="space-x-4 text-sm font-medium">
+                <a href="#sumario" class="text-brand-accent hover:text-white transition border-b-2 border-transparent hover:border-brand-accent py-2">Sumário</a>
+                <a href="#detalhes-mensais" class="text-brand-text-soft hover:text-white transition border-b-2 border-transparent hover:border-brand-accent py-2">Detalhes Mensais</a>
+                <a href="#evolucao" class="text-brand-text-soft hover:text-white transition border-b-2 border-transparent hover:border-brand-accent py-2">Evolução</a>
+                <a href="#proximos-passos" class="text-brand-danger hover:text-white transition border-b-2 border-transparent hover:border-brand-danger py-2">🚨 Bloqueio Crítico</a>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
 
     <main class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
 
@@ -391,12 +386,12 @@
 
     </main>
 
-    <footer class="bg-brand-card mt-16 border-t border-brand-card shadow-inner">
-        <div class="container mx-auto py-6 px-4 text-center text-brand-text-soft">
-            <p>&copy; 2025 Clever Advertising. Todos os direitos reservados.</p>
-            <p class="text-sm">Relatório confidencial preparado para Alfa.bet.</p>
-        </div>
-    </footer>
+    <footer class="bg-brand-dark mt-16 border-t border-white/5 shadow-inner">
+    <div class="container mx-auto py-6 px-4 text-center text-brand-text-soft">
+        <p>&copy; 2025 Clever Advertising. Todos os direitos reservados.</p>
+        <p class="text-sm">Relatório confidencial preparado para Alfa.bet.</p>
+    </div>
+</footer>
 
 </body>
 </html>
